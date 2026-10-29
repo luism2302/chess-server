@@ -1,9 +1,16 @@
 package game
 
 import (
+	"errors"
 	"fmt"
+	"log"
 	"slices"
 	"strings"
+)
+
+var (
+	ErrInvalidTurn   = errors.New("Other player's turn")
+	ErrSelectedEmpty = errors.New("Selected an empty square")
 )
 
 type Game struct {
@@ -28,10 +35,7 @@ func (g *Game) BoardRepr() string {
 		builder.WriteString(fmt.Sprintf("%d | ", 8-i))
 		for _, square := range row {
 			builder.WriteString(" ")
-			repr, err := pieceRune(square.pieceAt.val)
-			if err != nil {
-				return ""
-			}
+			repr := square.pieceAt.getPieceRune()
 			builder.WriteRune(repr)
 			builder.WriteString(" ")
 		}
@@ -40,6 +44,7 @@ func (g *Game) BoardRepr() string {
 	}
 	builder.WriteString(border)
 	builder.WriteString(cols)
+	builder.WriteString("\n\n")
 	return builder.String()
 }
 
@@ -50,16 +55,34 @@ func (g *Game) Update(move string) error {
 	}
 
 	pieceAtStart := g.getPieceAtCoords(startingCoords)
-	if pieceAtStart.isWhite == g.isWhiteTurn {
-		return nil
+	pieceAtEnd := g.getPieceAtCoords(endingCoords)
+
+	if pieceAtEnd.getPieceColor() == pieceAtStart.getPieceColor() && pieceAtEnd.getPieceVal() != EmptyVal {
+		return ErrInvalidMove
 	}
 
-	availableMoves := getAvailableMoves(pieceAtStart, startingCoords, g.board)
+	if pieceAtStart.getPieceVal() == EmptyVal {
+		return ErrSelectedEmpty
+	}
+
+	if pieceAtStart.getPieceColor() == g.isWhiteTurn {
+		return ErrInvalidTurn
+	}
+
+	availableMoves := pieceAtStart.getAvailableMoves(startingCoords, g.board)
+
+	log.Printf("available moves: %v", availableMoves)
 
 	if slices.Contains(availableMoves, endingCoords) {
-		updatedBoard := g.UpdateBoard(pieceAtStart, startingCoords, endingCoords)
+		updatedBoard := g.updateBoard(pieceAtStart, startingCoords, endingCoords)
 		g.board = updatedBoard
 		g.isWhiteTurn = !g.isWhiteTurn
+
+		switch pieceAtStart {
+		}
+
+	} else {
+		return ErrInvalidMove
 	}
 
 	return nil
@@ -101,13 +124,27 @@ func (g *Game) getPieceAtCoords(startCoords coords) piece {
 	return piece
 }
 
-func (g *Game) UpdateBoard(piece piece, startAt coords, endAt coords) board {
+func (g *Game) updateBoard(piece piece, startAt coords, endAt coords) board {
 	updatedBoard := g.board
-	updatedStartSquare := square{pieceAt: Empty, isOccupied: false}
+	updatedStartSquare := square{pieceAt: newEmpty(), isOccupied: false}
 	updatedBoard.squares[startAt.row][startAt.col] = updatedStartSquare
 
 	updatedEndSquare := square{pieceAt: piece, isOccupied: true}
 	updatedBoard.squares[endAt.row][endAt.col] = updatedEndSquare
 
+	g.updatePiece(piece, startAt, endAt)
+
 	return updatedBoard
+}
+
+func (g *Game) updatePiece(piece piece, startAt coords, endAt coords) {
+	switch v := piece.(type) {
+	case *pawn:
+		if v.isFirstMove {
+			v.updateFirstMove()
+			if endAt.row-startAt.row == 2 || endAt.row-startAt.row == -2 {
+				v.enPassantable = true
+			}
+		}
+	}
 }

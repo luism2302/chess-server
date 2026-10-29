@@ -1,0 +1,1031 @@
+debug 2026/10/28 12:26:09 available moves: [{5 0} {4 0}]
+debug 2026/10/28 12:30:12 available moves: []
+debug 2026/10/28 12:41:35 available moves: [{5 0} {4 0}]
+debug 2026/10/28 12:43:35 available moves: [{5 0} {4 0}]
+debug 2026/10/28 12:43:52 available moves: [{2 0} {3 0}]
+debug 2026/10/28 12:44:03 available moves: [{2 0} {3 0}]
+debug 2026/10/28 12:51:47 available moves: [{5 4} {4 4}]
+debug 2026/10/28 12:52:01 available moves: [{2 3} {3 3}]
+debug 2026/10/28 12:52:11 available moves: [{3 4} {2 4} {3 3}]
+debug 2026/10/28 12:52:33 available moves: [{2 4} {3 4}]
+debug 2026/10/28 12:53:11 available moves: [{5 4} {4 4}]
+debug 2026/10/28 12:53:47 available moves: [{2 3} {3 3}]
+debug 2026/10/28 12:53:57 available moves: [{3 4} {2 4} {3 3}]
+debug 2026/10/28 12:54:02 available moves: [{4 3} {5 3}]
+debug 2026/10/28 12:54:11 available moves: [{4 3} {5 3}]
+debug 2026/10/28 12:54:24 available moves: [{2 4} {1 4}]
+debug 2026/10/28 12:54:33 available moves: [{2 0} {3 0}]
+debug 2026/10/28 12:54:40 available moves: [{1 4} {0 4} {1 5}]
+debug 2026/10/28 12:54:49 available moves: [{2 7} {3 7}]
+debug 2026/10/28 12:55:04 available moves: [{0 5} {-1 5} {0 6} {0 4}]
+debug 2026/10/28 12:55:12 available moves: [{2 6} {3 6}]
+debug 2026/10/28 12:55:38 error during runtime: program was killed: program experienced a panic
+debug 2026/10/28 14:31:49 available moves: [{5 0} {4 0}]
+debug 2026/10/28 14:31:58 available moves: [{2 1} {3 1}]
+debug 2026/10/28 14:32:10 available moves: [{3 0} {2 0} {3 1}]
+debug 2026/10/28 14:32:23 available moves: [{2 2} {3 2}]
+debug 2026/10/28 14:32:32 available moves: [{2 1} {1 1}]
+debug 2026/10/28 14:32:39 available moves: [{2 1} {1 1}]
+debug 2026/10/28 14:32:45 available moves: [{2 1} {1 1}]
+debug 2026/10/28 14:33:15 available moves: [{4 2} {5 2}]
+debug 2026/10/28 14:33:19 available moves: [{4 2} {5 2}]
+debug 2026/10/28 14:33:38 available moves: [{1 1} {0 1} {1 0}]
+debug 2026/10/28 14:33:54 available moves: [{5 2} {6 2}]
+debug 2026/10/28 14:34:01 available moves: [{5 2} {6 2}]
+debug 2026/10/28 14:34:22 available moves: [{0 1} {-1 1} {0 2} {0 0}]
+debug 2026/10/28 14:34:29 available moves: [{0 1} {-1 1} {0 2} {0 0}]
+debug 2026/10/28 14:34:45 available moves: [{6 2} {7 2} {6 3} {6 1}]
+debug 2026/10/28 14:35:05 error during runtime: program was killed: program experienced a panic
+debug 2026/10/28 16:46:10 available moves: [{5 0} {4 0}]
+debug 2026/10/28 16:48:00 map[a1:{7 0} a2:{6 0} a3:{5 0} a4:{4 0} a5:{3 0} a6:{2 0} a7:{1 0} a8:{0 0} b1:{7 1} b2:{6 1} b3:{5 1} b4:{4 1} b5:{3 1} b6:{2 1} b7:{1 1} b8:{0 1} c1:{7 2} c2:{6 2} c3:{5 2} c4:{4 2} c5:{3 2} c6:{2 2} c7:{1 2} c8:{0 2} d1:{7 3} d2:{6 3} d3:{5 3} d4:{4 3} d5:{3 3} d6:{2 3} d7:{1 3} d8:{0 3} e1:{7 4} e2:{6 4} e3:{5 4} e4:{4 4} e5:{3 4} e6:{2 4} e7:{1 4} e8:{0 4} f1:{7 5} f2:{6 5} f3:{5 5} f4:{4 5} f5:{3 5} f6:{2 5} f7:{1 5} f8:{0 5} g1:{7 6} g2:{6 6} g3:{5 6} g4:{4 6} g5:{3 6} g6:{2 6} g7:{1 6} g8:{0 6} h1:{7 7} h2:{6 7} h3:{5 7} h4:{4 7} h5:{3 7} h6:{2 7} h7:{1 7} h8:{0 7}]
+debug 2026/10/28 16:50:50 available moves: [{5 0} {4 0}]
+debug 2026/10/28 16:50:54 available moves: [{5 0} {4 0}]
+debug 2026/10/28 16:50:55 available moves: [{5 0} {4 0}]
+debug 2026/10/28 16:51:07 available moves: [{2 1} {3 1}]
+debug 2026/10/28 16:51:18 available moves: [{3 0} {2 0} {3 1}]
+debug 2026/10/28 16:51:23 available moves: [{3 0} {2 0} {3 1}]
+debug 2026/10/28 16:51:30 available moves: [{2 2} {3 2}]
+debug 2026/10/28 16:51:36 available moves: [{2 1} {1 1}]
+debug 2026/10/28 16:51:41 available moves: [{2 1} {1 1}]
+debug 2026/10/28 16:51:56 available moves: [{2 0} {3 0} {2 1}]
+debug 2026/10/28 16:51:56 available moves: [{2 0} {3 0} {2 1}]
+debug 2026/10/28 16:52:00 available moves: [{2 0} {3 0} {2 1}]
+debug 2026/10/28 16:52:05 available moves: [{2 0} {3 0} {2 1}]
+debug 2026/10/28 16:52:16 available moves: [{1 1} {0 1}]
+debug 2026/10/28 16:52:20 available moves: [{1 1} {0 1}]
+debug 2026/10/28 16:52:23 available moves: [{1 1} {0 1}]
+debug 2026/10/28 17:03:35 available moves: [{5 2} {4 2}]
+debug 2026/10/28 17:03:46 available moves: [{2 3} {3 3}]
+debug 2026/10/28 17:03:55 available moves: [{3 2} {3 3}]
+debug 2026/10/28 17:04:04 available moves: [{4 3}]
+debug 2026/10/28 17:04:05 available moves: [{4 3}]
+debug 2026/10/28 17:04:10 available moves: [{4 3}]
+debug 2026/10/28 17:04:22 available moves: [{2 2}]
+debug 2026/10/28 17:04:35 available moves: [{5 3}]
+debug 2026/10/28 17:04:46 available moves: [{1 2} {1 1}]
+debug 2026/10/28 17:04:53 available moves: [{6 3} {6 4}]
+debug 2026/10/28 17:05:06 available moves: [{6 3} {6 4}]
+debug 2026/10/28 17:05:18 available moves: [{0 2} {0 3} {0 1}]
+debug 2026/10/28 17:05:32 available moves: [{7 4} {7 5} {7 3}]
+debug 2026/10/28 17:05:39 error during runtime: program was killed: program experienced a panic
+debug 2026/10/28 17:14:37 available moves: []
+debug 2026/10/28 17:14:44 available moves: [{5 7} {4 7}]
+debug 2026/10/28 17:14:44 available moves: [{5 7} {4 7}]
+debug 2026/10/28 17:14:49 available moves: [{5 7} {4 7}]
+debug 2026/10/28 17:14:54 available moves: []
+debug 2026/10/28 17:15:04 available moves: [{2 7} {3 7}]
+debug 2026/10/28 17:15:10 available moves: [{4 7}]
+debug 2026/10/28 17:15:14 available moves: []
+debug 2026/10/28 17:15:15 available moves: []
+debug 2026/10/28 17:15:15 available moves: []
+debug 2026/10/28 17:15:16 available moves: []
+debug 2026/10/28 17:15:16 available moves: []
+debug 2026/10/28 17:15:36 available moves: [{2 6}]
+debug 2026/10/28 17:15:44 available moves: [{2 6}]
+debug 2026/10/28 17:15:44 available moves: [{2 6}]
+debug 2026/10/28 17:15:44 available moves: [{2 6}]
+debug 2026/10/28 17:15:44 available moves: [{2 6}]
+debug 2026/10/28 17:15:44 available moves: [{2 6}]
+debug 2026/10/28 17:15:46 available moves: [{2 6}]
+debug 2026/10/28 17:15:57 available moves: [{5 6}]
+debug 2026/10/28 17:15:57 available moves: [{5 6}]
+debug 2026/10/28 17:15:57 available moves: [{5 6}]
+debug 2026/10/28 17:15:57 available moves: [{5 6}]
+debug 2026/10/28 17:15:58 available moves: [{5 6}]
+debug 2026/10/28 17:15:58 available moves: [{5 6}]
+debug 2026/10/28 17:15:58 available moves: [{5 6}]
+debug 2026/10/28 17:18:33 available moves: [{5 0} {4 0}]
+debug 2026/10/28 17:18:42 available moves: [{2 1} {3 1}]
+debug 2026/10/28 17:18:59 available moves: [{5 7}]
+debug 2026/10/28 17:18:59 available moves: [{5 7}]
+debug 2026/10/28 17:19:00 available moves: [{5 7}]
+debug 2026/10/28 17:19:00 available moves: [{5 7}]
+debug 2026/10/28 17:19:01 available moves: [{5 7}]
+debug 2026/10/28 17:19:01 available moves: [{5 7}]
+debug 2026/10/28 17:20:44 available moves: [{5 2} {4 2}]
+debug 2026/10/28 17:20:44 [[{0x38b3a71aa198 true} {0x38b3a71aa138 true} {0x38b3a71aa168 true} {0x38b3a71aa1c8 true} {0x38b3a71aa1f8 true} {0x38b3a71aa168 true} {0x38b3a71aa138 true} {0x38b3a71aa198 true}] [{0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x38b3a71aa108 true}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x38b3a71aa120 true} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x38b3a71aa120 true} {0x38b3a71aa120 true} {0x75ff30 false} {0x38b3a71aa120 true} {0x38b3a71aa120 true} {0x38b3a71aa120 true} {0x38b3a71aa120 true} {0x38b3a71aa120 true}] [{0x38b3a71aa1b0 true} {0x38b3a71aa150 true} {0x38b3a71aa180 true} {0x38b3a71aa1e0 true} {0x38b3a71aa210 true} {0x38b3a71aa180 true} {0x38b3a71aa150 true} {0x38b3a71aa1b0 true}]]
+debug 2026/10/28 17:22:10 available moves: [{2 7} {3 7}]
+debug 2026/10/28 17:22:10 [[{0x38b3a71aa198 true} {0x38b3a71aa138 true} {0x38b3a71aa168 true} {0x38b3a71aa1c8 true} {0x38b3a71aa1f8 true} {0x38b3a71aa168 true} {0x38b3a71aa138 true} {0x38b3a71aa198 true}] [{0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x38b3a71aa108 true} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x38b3a71aa108 true}] [{0x75ff30 false} {0x75ff30 false} {0x38b3a71aa120 true} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x38b3a71aa120 true} {0x38b3a71aa120 true} {0x75ff30 false} {0x38b3a71aa120 true} {0x38b3a71aa120 true} {0x38b3a71aa120 true} {0x38b3a71aa120 true} {0x38b3a71aa120 true}] [{0x38b3a71aa1b0 true} {0x38b3a71aa150 true} {0x38b3a71aa180 true} {0x38b3a71aa1e0 true} {0x38b3a71aa210 true} {0x38b3a71aa180 true} {0x38b3a71aa150 true} {0x38b3a71aa1b0 true}]]
+debug 2026/10/28 17:22:17 available moves: [{5 5}]
+debug 2026/10/28 17:22:18 available moves: [{5 5}]
+debug 2026/10/28 17:22:18 available moves: [{5 5}]
+debug 2026/10/28 17:22:18 available moves: [{5 5}]
+debug 2026/10/28 17:22:18 available moves: [{5 5}]
+debug 2026/10/28 17:22:19 available moves: [{5 5}]
+debug 2026/10/28 17:29:58 available moves: [{5 2} {4 2}]
+debug 2026/10/28 17:29:58 [[{0x41d3e1f8198 true} {0x41d3e1f8138 true} {0x41d3e1f8168 true} {0x41d3e1f81c8 true} {0x41d3e1f81f8 true} {0x41d3e1f8168 true} {0x41d3e1f8138 true} {0x41d3e1f8198 true}] [{0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x41d3e1f8108 true}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x41d3e1f8120 true} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x41d3e1f8120 true} {0x41d3e1f8120 true} {0x75ff30 false} {0x41d3e1f8120 true} {0x41d3e1f8120 true} {0x41d3e1f8120 true} {0x41d3e1f8120 true} {0x41d3e1f8120 true}] [{0x41d3e1f81b0 true} {0x41d3e1f8150 true} {0x41d3e1f8180 true} {0x41d3e1f81e0 true} {0x41d3e1f8210 true} {0x41d3e1f8180 true} {0x41d3e1f8150 true} {0x41d3e1f81b0 true}]]
+debug 2026/10/28 17:30:05 available moves: [{2 7} {3 7}]
+debug 2026/10/28 17:30:05 [[{0x41d3e1f8198 true} {0x41d3e1f8138 true} {0x41d3e1f8168 true} {0x41d3e1f81c8 true} {0x41d3e1f81f8 true} {0x41d3e1f8168 true} {0x41d3e1f8138 true} {0x41d3e1f8198 true}] [{0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x41d3e1f8108 true} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x41d3e1f8108 true}] [{0x75ff30 false} {0x75ff30 false} {0x41d3e1f8120 true} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false} {0x75ff30 false}] [{0x41d3e1f8120 true} {0x41d3e1f8120 true} {0x75ff30 false} {0x41d3e1f8120 true} {0x41d3e1f8120 true} {0x41d3e1f8120 true} {0x41d3e1f8120 true} {0x41d3e1f8120 true}] [{0x41d3e1f81b0 true} {0x41d3e1f8150 true} {0x41d3e1f8180 true} {0x41d3e1f81e0 true} {0x41d3e1f8210 true} {0x41d3e1f8180 true} {0x41d3e1f8150 true} {0x41d3e1f81b0 true}]]
+debug 2026/10/28 17:30:09 available moves: [{5 3}]
+debug 2026/10/28 17:30:10 available moves: [{5 3}]
+debug 2026/10/28 17:30:10 available moves: [{5 3}]
+debug 2026/10/28 17:30:10 available moves: [{5 3}]
+debug 2026/10/28 17:30:10 available moves: [{5 3}]
+debug 2026/10/28 17:38:13 available moves: [{5 4} {4 4}]
+debug 2026/10/28 17:38:13 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:38:13 Knight{color: true}
+debug 2026/10/28 17:38:13 Bishop{color: true}
+debug 2026/10/28 17:38:13 Queen{color: true}
+debug 2026/10/28 17:38:13 King{color: true, isFirstMove: true}
+debug 2026/10/28 17:38:13 Bishop{color: true}
+debug 2026/10/28 17:38:13 Knight{color: true}
+debug 2026/10/28 17:38:13 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:38:13 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:38:13 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:38:13 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:38:13 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:38:13 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:38:13 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:38:13 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:38:13 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:38:13 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:38:13 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:38:13 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:38:13 Empty{}
+debug 2026/10/28 17:38:13 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:38:13 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:38:13 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:38:13 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:38:13 Knight{color: false}
+debug 2026/10/28 17:38:13 Bishop{color: false}
+debug 2026/10/28 17:38:13 Queen{color: false}
+debug 2026/10/28 17:38:13 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:38:13 Bishop{color: false}
+debug 2026/10/28 17:38:13 Knight{color: false}
+debug 2026/10/28 17:38:13 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:43:47 available moves: []
+debug 2026/10/28 17:43:50 available moves: []
+debug 2026/10/28 17:43:50 available moves: []
+debug 2026/10/28 17:43:51 available moves: []
+debug 2026/10/28 17:44:34 available moves: [{5 2} {4 2}]
+debug 2026/10/28 17:44:34 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:44:34 Knight{color: true}
+debug 2026/10/28 17:44:34 Bishop{color: true}
+debug 2026/10/28 17:44:34 Queen{color: true}
+debug 2026/10/28 17:44:34 King{color: true, isFirstMove: true}
+debug 2026/10/28 17:44:34 Bishop{color: true}
+debug 2026/10/28 17:44:34 Knight{color: true}
+debug 2026/10/28 17:44:34 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:44:34 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Empty{}
+debug 2026/10/28 17:44:34 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:34 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:44:34 Knight{color: false}
+debug 2026/10/28 17:44:34 Bishop{color: false}
+debug 2026/10/28 17:44:34 Queen{color: false}
+debug 2026/10/28 17:44:34 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:44:34 Bishop{color: false}
+debug 2026/10/28 17:44:34 Knight{color: false}
+debug 2026/10/28 17:44:34 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:44:38 available moves: [{2 3} {3 3}]
+debug 2026/10/28 17:44:38 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:44:38 Knight{color: true}
+debug 2026/10/28 17:44:38 Bishop{color: true}
+debug 2026/10/28 17:44:38 Queen{color: true}
+debug 2026/10/28 17:44:38 King{color: true, isFirstMove: true}
+debug 2026/10/28 17:44:38 Bishop{color: true}
+debug 2026/10/28 17:44:38 Knight{color: true}
+debug 2026/10/28 17:44:38 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:44:38 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Pawn{color: true, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Empty{}
+debug 2026/10/28 17:44:38 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:38 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:44:38 Knight{color: false}
+debug 2026/10/28 17:44:38 Bishop{color: false}
+debug 2026/10/28 17:44:38 Queen{color: false}
+debug 2026/10/28 17:44:38 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:44:38 Bishop{color: false}
+debug 2026/10/28 17:44:38 Knight{color: false}
+debug 2026/10/28 17:44:38 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:44:45 available moves: [{5 3} {4 3}]
+debug 2026/10/28 17:44:45 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:44:45 Knight{color: true}
+debug 2026/10/28 17:44:45 Bishop{color: true}
+debug 2026/10/28 17:44:45 Queen{color: true}
+debug 2026/10/28 17:44:45 King{color: true, isFirstMove: true}
+debug 2026/10/28 17:44:45 Bishop{color: true}
+debug 2026/10/28 17:44:45 Knight{color: true}
+debug 2026/10/28 17:44:45 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:44:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Pawn{color: true, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:44:45 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Empty{}
+debug 2026/10/28 17:44:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:44:45 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:44:45 Knight{color: false}
+debug 2026/10/28 17:44:45 Bishop{color: false}
+debug 2026/10/28 17:44:45 Queen{color: false}
+debug 2026/10/28 17:44:45 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:44:45 Bishop{color: false}
+debug 2026/10/28 17:44:45 Knight{color: false}
+debug 2026/10/28 17:44:45 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:09 available moves: [{4 2}]
+debug 2026/10/28 17:45:09 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:09 Knight{color: true}
+debug 2026/10/28 17:45:09 Bishop{color: true}
+debug 2026/10/28 17:45:09 Queen{color: true}
+debug 2026/10/28 17:45:09 King{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:09 Bishop{color: true}
+debug 2026/10/28 17:45:09 Knight{color: true}
+debug 2026/10/28 17:45:09 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:09 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Pawn{color: true, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:09 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Empty{}
+debug 2026/10/28 17:45:09 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:09 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:09 Knight{color: false}
+debug 2026/10/28 17:45:09 Bishop{color: false}
+debug 2026/10/28 17:45:09 Queen{color: false}
+debug 2026/10/28 17:45:09 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:09 Bishop{color: false}
+debug 2026/10/28 17:45:09 Knight{color: false}
+debug 2026/10/28 17:45:09 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:14 available moves: [{3 3}]
+debug 2026/10/28 17:45:14 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:14 Knight{color: true}
+debug 2026/10/28 17:45:14 Bishop{color: true}
+debug 2026/10/28 17:45:14 Queen{color: true}
+debug 2026/10/28 17:45:14 King{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:14 Bishop{color: true}
+debug 2026/10/28 17:45:14 Knight{color: true}
+debug 2026/10/28 17:45:14 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:14 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Pawn{color: true, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Empty{}
+debug 2026/10/28 17:45:14 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:14 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:14 Knight{color: false}
+debug 2026/10/28 17:45:14 Bishop{color: false}
+debug 2026/10/28 17:45:14 Queen{color: false}
+debug 2026/10/28 17:45:14 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:14 Bishop{color: false}
+debug 2026/10/28 17:45:14 Knight{color: false}
+debug 2026/10/28 17:45:14 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:18 available moves: [{5 2}]
+debug 2026/10/28 17:45:18 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:18 Knight{color: true}
+debug 2026/10/28 17:45:18 Bishop{color: true}
+debug 2026/10/28 17:45:18 Queen{color: true}
+debug 2026/10/28 17:45:18 King{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:18 Bishop{color: true}
+debug 2026/10/28 17:45:18 Knight{color: true}
+debug 2026/10/28 17:45:18 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Pawn{color: true, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Empty{}
+debug 2026/10/28 17:45:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:18 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:18 Knight{color: false}
+debug 2026/10/28 17:45:18 Bishop{color: false}
+debug 2026/10/28 17:45:18 Queen{color: false}
+debug 2026/10/28 17:45:18 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:18 Bishop{color: false}
+debug 2026/10/28 17:45:18 Knight{color: false}
+debug 2026/10/28 17:45:18 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:21 available moves: [{2 3}]
+debug 2026/10/28 17:45:21 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:21 Knight{color: true}
+debug 2026/10/28 17:45:21 Bishop{color: true}
+debug 2026/10/28 17:45:21 Queen{color: true}
+debug 2026/10/28 17:45:21 King{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:21 Bishop{color: true}
+debug 2026/10/28 17:45:21 Knight{color: true}
+debug 2026/10/28 17:45:21 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:21 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Pawn{color: true, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Empty{}
+debug 2026/10/28 17:45:21 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:21 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:21 Knight{color: false}
+debug 2026/10/28 17:45:21 Bishop{color: false}
+debug 2026/10/28 17:45:21 Queen{color: false}
+debug 2026/10/28 17:45:21 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:21 Bishop{color: false}
+debug 2026/10/28 17:45:21 Knight{color: false}
+debug 2026/10/28 17:45:21 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:28 available moves: [{6 2}]
+debug 2026/10/28 17:45:28 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:28 Knight{color: true}
+debug 2026/10/28 17:45:28 Bishop{color: true}
+debug 2026/10/28 17:45:28 Queen{color: true}
+debug 2026/10/28 17:45:28 King{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:28 Bishop{color: true}
+debug 2026/10/28 17:45:28 Knight{color: true}
+debug 2026/10/28 17:45:28 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:28 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Pawn{color: true, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:28 Empty{}
+debug 2026/10/28 17:45:28 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:28 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:28 Knight{color: false}
+debug 2026/10/28 17:45:28 Bishop{color: false}
+debug 2026/10/28 17:45:28 Queen{color: false}
+debug 2026/10/28 17:45:28 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:28 Bishop{color: false}
+debug 2026/10/28 17:45:28 Knight{color: false}
+debug 2026/10/28 17:45:28 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:37 available moves: [{1 3} {1 4} {1 2}]
+debug 2026/10/28 17:45:37 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:37 Knight{color: true}
+debug 2026/10/28 17:45:37 Bishop{color: true}
+debug 2026/10/28 17:45:37 Queen{color: true}
+debug 2026/10/28 17:45:37 King{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:37 Bishop{color: true}
+debug 2026/10/28 17:45:37 Knight{color: true}
+debug 2026/10/28 17:45:37 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:37 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:37 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Pawn{color: true, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:37 Empty{}
+debug 2026/10/28 17:45:37 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:37 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:37 Knight{color: false}
+debug 2026/10/28 17:45:37 Bishop{color: false}
+debug 2026/10/28 17:45:37 Queen{color: false}
+debug 2026/10/28 17:45:37 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:37 Bishop{color: false}
+debug 2026/10/28 17:45:37 Knight{color: false}
+debug 2026/10/28 17:45:37 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:45 available moves: [{7 2}]
+debug 2026/10/28 17:45:45 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:45 Knight{color: true}
+debug 2026/10/28 17:45:45 Bishop{color: true}
+debug 2026/10/28 17:45:45 Queen{color: true}
+debug 2026/10/28 17:45:45 King{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:45 Bishop{color: true}
+debug 2026/10/28 17:45:45 Knight{color: true}
+debug 2026/10/28 17:45:45 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:45:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Empty{}
+debug 2026/10/28 17:45:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:45:45 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:45 Knight{color: false}
+debug 2026/10/28 17:45:45 Pawn{color: true, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:45:45 Queen{color: false}
+debug 2026/10/28 17:45:45 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:45:45 Bishop{color: false}
+debug 2026/10/28 17:45:45 Knight{color: false}
+debug 2026/10/28 17:45:45 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:46:18 available moves: [{0 4} {0 2}]
+debug 2026/10/28 17:46:18 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:46:18 Knight{color: true}
+debug 2026/10/28 17:46:18 Bishop{color: true}
+debug 2026/10/28 17:46:18 Queen{color: true}
+debug 2026/10/28 17:46:18 Pawn{color: false, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:46:18 Bishop{color: true}
+debug 2026/10/28 17:46:18 Knight{color: true}
+debug 2026/10/28 17:46:18 Rook{color: true, isFirstMove: true}
+debug 2026/10/28 17:46:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Pawn{color: true, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Empty{}
+debug 2026/10/28 17:46:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Pawn{color: false, isFirstMove: true, isEnpassantable: false}
+debug 2026/10/28 17:46:18 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:46:18 Knight{color: false}
+debug 2026/10/28 17:46:18 Pawn{color: true, isFirstMove: false, isEnpassantable: true}
+debug 2026/10/28 17:46:18 Queen{color: false}
+debug 2026/10/28 17:46:18 King{color: false, isFirstMove: true}
+debug 2026/10/28 17:46:18 Bishop{color: false}
+debug 2026/10/28 17:46:18 Knight{color: false}
+debug 2026/10/28 17:46:18 Rook{color: false, isFirstMove: true}
+debug 2026/10/28 17:46:26 error during runtime: program was killed: program experienced a panic
+debug 2026/10/29 10:01:20 checking take at edge h
+debug 2026/10/29 10:01:20 available moves: [{5 0} {4 0}]
+debug 2026/10/29 10:01:25 checking take at edge h
+debug 2026/10/29 10:01:25 checking take at edge a
+debug 2026/10/29 10:01:25 available moves: [{2 2} {3 2}]
+debug 2026/10/29 10:01:29 checking take at edge h
+debug 2026/10/29 10:01:29 available moves: [{3 0}]
+debug 2026/10/29 10:01:39 checking take at edge h
+debug 2026/10/29 10:01:39 checking take at edge a
+debug 2026/10/29 10:01:39 available moves: [{2 1} {3 1}]
+debug 2026/10/29 10:01:47 checking take at edge h
+debug 2026/10/29 10:01:47 available moves: [{2 0} {2 1}]
+debug 2026/10/29 10:01:52 checking take at edge h
+debug 2026/10/29 10:01:52 checking take at edge a
+debug 2026/10/29 10:01:52 available moves: [{4 2}]
+debug 2026/10/29 10:02:03 checking take at edge h
+debug 2026/10/29 10:02:03 checking take at edge a
+debug 2026/10/29 10:02:03 available moves: [{1 1} {1 0}]
+debug 2026/10/29 10:02:06 checking take at edge h
+debug 2026/10/29 10:02:06 checking take at edge a
+debug 2026/10/29 10:02:06 available moves: [{1 1} {1 0}]
+debug 2026/10/29 10:02:10 checking take at edge h
+debug 2026/10/29 10:02:10 checking take at edge a
+debug 2026/10/29 10:02:10 available moves: [{5 2}]
+debug 2026/10/29 10:02:24 checking take at edge h
+debug 2026/10/29 10:02:24 checking take at edge a
+debug 2026/10/29 10:02:24 available moves: [{0 2} {0 0}]
+debug 2026/10/29 10:02:29 checking take at edge h
+debug 2026/10/29 10:02:29 checking take at edge a
+debug 2026/10/29 10:02:29 available moves: [{0 2} {0 0}]
+debug 2026/10/29 10:02:31 checking take at edge h
+debug 2026/10/29 10:02:31 checking take at edge a
+debug 2026/10/29 10:02:31 available moves: [{0 2} {0 0}]
+debug 2026/10/29 10:02:37 checking take at edge h
+debug 2026/10/29 10:02:37 checking take at edge a
+debug 2026/10/29 10:02:37 available moves: [{0 2} {0 0}]
+debug 2026/10/29 10:02:42 checking take at edge a
+debug 2026/10/29 10:02:42 available moves: [{2 7} {3 7}]
+debug 2026/10/29 10:02:57 error during runtime: program was killed: program experienced a panic
+debug 2026/10/29 10:12:24 checking take at edge h
+debug 2026/10/29 10:12:24 checking take at edge a
+debug 2026/10/29 10:12:24 available moves: [{5 2} {4 2}]
+debug 2026/10/29 10:12:30 checking take at edge h
+debug 2026/10/29 10:12:30 checking take at edge a
+debug 2026/10/29 10:12:30 available moves: [{2 3} {3 3}]
+debug 2026/10/29 10:12:32 checking take at edge h
+debug 2026/10/29 10:12:32 checking take at edge a
+debug 2026/10/29 10:12:32 available moves: [{3 2} {3 3}]
+debug 2026/10/29 10:12:35 checking take at edge h
+debug 2026/10/29 10:12:35 checking take at edge a
+debug 2026/10/29 10:12:35 available moves: [{4 3}]
+debug 2026/10/29 10:12:38 checking take at edge h
+debug 2026/10/29 10:12:38 checking take at edge a
+debug 2026/10/29 10:12:38 available moves: [{4 3}]
+debug 2026/10/29 10:12:43 checking take at edge h
+debug 2026/10/29 10:12:43 checking take at edge a
+debug 2026/10/29 10:12:43 available moves: [{2 2}]
+debug 2026/10/29 10:12:49 checking take at edge h
+debug 2026/10/29 10:12:49 checking take at edge a
+debug 2026/10/29 10:12:49 available moves: [{5 3}]
+debug 2026/10/29 10:12:57 checking take at edge h
+debug 2026/10/29 10:12:57 checking take at edge a
+debug 2026/10/29 10:12:57 available moves: [{5 3}]
+debug 2026/10/29 10:13:04 checking take at edge h
+debug 2026/10/29 10:13:04 checking take at edge a
+debug 2026/10/29 10:13:04 available moves: [{1 1}]
+debug 2026/10/29 10:13:12 checking take at edge a
+debug 2026/10/29 10:13:12 available moves: [{2 7} {3 7}]
+debug 2026/10/29 10:13:22 checking take at edge h
+debug 2026/10/29 10:13:22 checking take at edge a
+debug 2026/10/29 10:13:22 available moves: [{0 2} {0 0}]
+debug 2026/10/29 10:13:31 checking take at edge h
+debug 2026/10/29 10:13:31 checking take at edge a
+debug 2026/10/29 10:13:31 available moves: [{0 2} {0 0}]
+debug 2026/10/29 10:13:39 checking take at edge h
+debug 2026/10/29 10:13:39 checking take at edge a
+debug 2026/10/29 10:13:39 available moves: [{2 2} {3 2}]
+debug 2026/10/29 10:13:48 checking take at edge h
+debug 2026/10/29 10:13:48 checking take at edge a
+debug 2026/10/29 10:13:48 available moves: [{2 4} {3 4}]
+debug 2026/10/29 10:13:51 checking take at edge h
+debug 2026/10/29 10:13:51 checking take at edge a
+debug 2026/10/29 10:13:51 available moves: [{2 4} {3 4}]
+debug 2026/10/29 10:13:57 available moves: []
+debug 2026/10/29 10:13:58 available moves: []
+debug 2026/10/29 10:13:58 available moves: []
+debug 2026/10/29 10:13:58 available moves: []
+debug 2026/10/29 10:13:59 available moves: []
+debug 2026/10/29 10:14:02 available moves: []
+debug 2026/10/29 10:14:07 available moves: []
+debug 2026/10/29 10:14:09 available moves: []
+debug 2026/10/29 10:14:09 available moves: []
+debug 2026/10/29 10:14:09 available moves: []
+debug 2026/10/29 10:14:10 available moves: []
+debug 2026/10/29 10:14:10 available moves: []
+debug 2026/10/29 10:14:10 available moves: []
+debug 2026/10/29 10:14:10 available moves: []
+debug 2026/10/29 10:14:27 checking take at edge h
+debug 2026/10/29 10:14:27 checking take at edge a
+debug 2026/10/29 10:14:27 available moves: [{5 5} {4 5}]
+debug 2026/10/29 10:14:29 checking take at edge h
+debug 2026/10/29 10:14:29 checking take at edge a
+debug 2026/10/29 10:14:29 available moves: [{5 5} {4 5}]
+debug 2026/10/29 10:14:35 checking take at edge h
+debug 2026/10/29 10:14:35 checking take at edge a
+debug 2026/10/29 10:14:35 available moves: [{6 3}]
+debug 2026/10/29 10:14:45 checking take at edge a
+debug 2026/10/29 10:14:45 available moves: [{5 7} {4 7}]
+debug 2026/10/29 10:14:51 checking take at edge h
+debug 2026/10/29 10:14:51 checking take at edge a
+debug 2026/10/29 10:14:51 available moves: [{7 3}]
+debug 2026/10/29 10:15:13 checking take at edge h
+debug 2026/10/29 10:15:13 checking take at edge a
+debug 2026/10/29 10:15:13 available moves: [{7 3}]
+debug 2026/10/29 10:15:13 checking take at edge h
+debug 2026/10/29 10:15:13 checking take at edge a
+debug 2026/10/29 10:15:13 available moves: [{7 3}]
+debug 2026/10/29 10:15:14 checking take at edge h
+debug 2026/10/29 10:15:14 checking take at edge a
+debug 2026/10/29 10:15:14 available moves: [{7 3}]
+debug 2026/10/29 10:15:17 checking take at edge h
+debug 2026/10/29 10:15:17 checking take at edge a
+debug 2026/10/29 10:15:17 available moves: [{7 3}]

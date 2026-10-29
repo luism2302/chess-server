@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"image/color"
 
 	"charm.land/bubbles/v2/textinput"
@@ -15,6 +16,7 @@ type model struct {
 	height    int
 	moveField textinput.Model
 	styles    *styles
+	errs      string
 }
 
 func newModel() *model {
@@ -47,9 +49,22 @@ func (m *model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			move := m.moveField.Value()
 			err := m.game.Update(move)
 			if err != nil {
-				return m, tea.Quit
+				switch {
+				case errors.Is(err, game.ErrInvalidMove):
+					m.errs = "invalid move"
+					return m, nil
+				case errors.Is(err, game.ErrInvalidTurn):
+					m.errs = "other player's turn"
+					return m, nil
+				case errors.Is(err, game.ErrSelectedEmpty):
+					m.errs = "there is no piece to move.."
+					return m, nil
+				default:
+					return m, tea.Quit
+				}
 			}
 			m.moveField.Reset()
+			m.errs = ""
 		}
 	}
 	m.moveField, cmd = m.moveField.Update(msg)
@@ -62,7 +77,7 @@ func (m *model) View() tea.View {
 	}
 
 	boardRepr := m.game.BoardRepr()
-	s := lipgloss.JoinVertical(lipgloss.Center, boardRepr, m.styles.inputField.Render(m.moveField.View()))
+	s := lipgloss.JoinVertical(lipgloss.Center, boardRepr, m.styles.inputField.Render(m.moveField.View()), m.errs)
 	s = lipgloss.Place(m.width, m.height, lipgloss.Center, lipgloss.Center, s)
 	view := tea.NewView(s)
 	view.AltScreen = true

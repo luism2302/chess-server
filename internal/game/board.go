@@ -26,14 +26,14 @@ var (
 )
 
 var startingSquares = [][]square{
-	{{WhiteRook, true}, {WhiteKnight, true}, {WhiteBishop, true}, {WhiteQueen, true}, {WhiteKing, true}, {WhiteBishop, true}, {WhiteKnight, true}, {WhiteRook, true}},
-	{{WhitePawn, true}, {WhitePawn, true}, {WhitePawn, true}, {WhitePawn, true}, {WhitePawn, true}, {WhitePawn, true}, {WhitePawn, true}, {WhitePawn, true}},
-	{{Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}},
-	{{Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}},
-	{{Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}},
-	{{Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}, {Empty, false}},
-	{{BlackPawn, true}, {BlackPawn, true}, {BlackPawn, true}, {BlackPawn, true}, {BlackPawn, true}, {BlackPawn, true}, {BlackPawn, true}, {BlackPawn, true}},
-	{{BlackRook, true}, {BlackKnight, true}, {BlackBishop, true}, {BlackQueen, true}, {BlackKing, true}, {BlackBishop, true}, {BlackKnight, true}, {BlackRook, true}},
+	{{newRook(true), true}, {newKnight(true), true}, {newBishop(true), true}, {newQueen(true), true}, {newKing(true), true}, {newBishop(true), true}, {newKnight(true), true}, {newRook(true), true}},
+	{{newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}},
+	{{newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
+	{{newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
+	{{newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
+	{{newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
+	{{newPawn(false), false}, {newPawn(false), false}, {newPawn(false), false}, {newPawn(false), false}, {newPawn(false), false}, {newPawn(false), false}, {newPawn(false), false}, {newPawn(false), false}},
+	{{newRook(false), false}, {newKnight(false), false}, {newBishop(false), false}, {newQueen(false), false}, {newKing(false), false}, {newBishop(false), false}, {newKnight(false), false}, {newRook(false), false}},
 }
 
 var letterToCol = map[rune]int{
@@ -61,6 +61,5 @@ func initializeCoordsMap() map[string]coords {
 			builder.Reset()
 		}
 	}
-
 	return m
 }
