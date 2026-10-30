@@ -1029,3 +1029,500 @@ debug 2026/10/29 10:15:14 available moves: [{7 3}]
 debug 2026/10/29 10:15:17 checking take at edge h
 debug 2026/10/29 10:15:17 checking take at edge a
 debug 2026/10/29 10:15:17 available moves: [{7 3}]
+debug 2026/10/29 23:35:21 [[{0x97d469b6000 true} {0x97d469b6018 true} {0x97d469b6030 true} {0x97d469b6048 true} {0x97d469b6060 true} {0x97d469b6078 true} {0x97d469b6090 true} {0x97d469b60a8 true}] [{0x97d469b60c0 true} {0x97d469b60d8 true} {0x97d469b60f0 true} {0x97d469b6108 true} {0x97d469b6120 true} {0x97d469b6138 true} {0x97d469b6150 true} {0x97d469b6168 true}] [{0x760f30 false} {0x760f40 false} {0x760f50 false} {0x760f60 false} {0x760f70 false} {0x760f80 false} {0x760f90 false} {0x760fa0 false}] [{0x760fb0 false} {0x760fc0 false} {0x760fd0 false} {0x760fe0 false} {0x760ff0 false} {0x761000 false} {0x761010 false} {0x761020 false}] [{0x761030 false} {0x761040 false} {0x761050 false} {0x761060 false} {0x761070 false} {0x761080 false} {0x761090 false} {0x7610a0 false}] [{0x7610b0 false} {0x7610c0 false} {0x7610d0 false} {0x7610e0 false} {0x7610f0 false} {0x761100 false} {0x761110 false} {0x761120 false}] [{0x97d469b6180 true} {0x97d469b6198 true} {0x97d469b61b0 true} {0x97d469b61c8 true} {0x97d469b61e0 true} {0x97d469b61f8 true} {0x97d469b6210 true} {0x97d469b6228 true}] [{0x97d469b6240 true} {0x97d469b6258 true} {0x97d469b6270 true} {0x97d469b6288 true} {0x97d469b62a0 true} {0x97d469b62b8 true} {0x97d469b62d0 true} {0x97d469b62e8 true}]]
+debug 2026/10/29 23:39:46 [Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true Square{pieceAt: Knight{color: false}, isOccupied: true Square{pieceAt: Bishop{color: false}, isOccupied: true Square{pieceAt: Queen{color: false}, isOccupied: true Square{pieceAt: King{color: false, isFirstMove: true}, isOccupied: true Square{pieceAt: Bishop{color: false}, isOccupied: true Square{pieceAt: Knight{color: false}, isOccupied: true Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true]
+debug 2026/10/29 23:39:46 [Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true]
+debug 2026/10/29 23:39:46 [Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false]
+debug 2026/10/29 23:39:46 [Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false]
+debug 2026/10/29 23:39:46 [Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false]
+debug 2026/10/29 23:39:46 [Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false Square{pieceAt: Empty{}, isOccupied: false]
+debug 2026/10/29 23:39:46 [Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true Square{pieceAt: Knight{color: true}, isOccupied: true Square{pieceAt: Bishop{color: true}, isOccupied: true Square{pieceAt: Queen{color: true}, isOccupied: true Square{pieceAt: King{color: true, isFirstMove: true}, isOccupied: true Square{pieceAt: Bishop{color: true}, isOccupied: true Square{pieceAt: Knight{color: true}, isOccupied: true Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true]
+debug 2026/10/29 23:39:46 [Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true]
+debug 2026/10/29 23:44:14 Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Knight{color: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Bishop{color: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Queen{color: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: King{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Bishop{color: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Knight{color: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Knight{color: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Bishop{color: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Queen{color: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: King{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Bishop{color: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Knight{color: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Knight{color: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Bishop{color: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Queen{color: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: King{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Bishop{color: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Knight{color: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Knight{color: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Bishop{color: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Queen{color: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: King{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Bishop{color: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Knight{color: true}, isOccupied: true}
+debug 2026/10/29 23:44:14 Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Knight{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Bishop{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Queen{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: King{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Bishop{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Knight{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Knight{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Bishop{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Queen{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: King{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Bishop{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Knight{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:19 Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Knight{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Bishop{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Queen{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: King{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Bishop{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Knight{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Knight{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Bishop{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Queen{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: King{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Bishop{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Knight{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Knight{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Bishop{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Queen{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: King{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Bishop{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Knight{color: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Rook{color: false, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: false, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Empty{}, isOccupied: false}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Pawn{color: true, isFirstMove: true, isEnpassantable: false}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Knight{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Bishop{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Queen{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: King{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Bishop{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Knight{color: true}, isOccupied: true}
+debug 2026/10/29 23:46:20 Square{pieceAt: Rook{color: true, isFirstMove: true}, isOccupied: true}
+debug 2026/10/29 23:46:21 +  -  -  -  -  -  -  -  -  +
+8 |  ♜  ♞  ♝  ♛  ♚  ♝  ♞  ♜  |
+
+7 |  ♟  ♟  ♟  ♟  ♟  ♟  ♟  ♟  |
+
+6 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+5 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+4 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+3 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+2 |  ♙  ♙  ♙  ♙  ♙  ♙  ♙  ♙  |
+
+1 |  ♖  ♘  ♗  ♕  ♔  ♗  ♘  ♖  |
+
++  -  -  -  -  -  -  -  -  +
+   a   b  c  d  e  f  g  h  
+
+
+debug 2026/10/29 23:46:21 +  -  -  -  -  -  -  -  -  +
+8 |  ♜  ♞  ♝  ♛  ♚  ♝  ♞  ♜  |
+
+7 |  ♟  ♟  ♟  ♟  ♟  ♟  ♟  ♟  |
+
+6 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+5 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+4 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+3 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+2 |  ♙  ♙  ♙  ♙  ♙  ♙  ♙  ♙  |
+
+1 |  ♖  ♘  ♗  ♕  ♔  ♗  ♘  ♖  |
+
++  -  -  -  -  -  -  -  -  +
+   a   b  c  d  e  f  g  h  
+
+
+debug 2026/10/29 23:47:03 +  -  -  -  -  -  -  -  -  +
+8 |  ♜  ♞  ♝  ♛  ♚  ♝  ♞  ♜  |
+
+7 |  ♟  ♟  ♟  ♟  ♟  ♟  ♟  ♟  |
+
+6 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+5 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+4 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+3 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+2 |  ♙  ♙  ♙  ♙  ♙  ♙  ♙  ♙  |
+
+1 |  ♖  ♘  ♗  ♕  ♔  ♗  ♘  ♖  |
+
++  -  -  -  -  -  -  -  -  +
+   a   b  c  d  e  f  g  h  
+
+
+debug 2026/10/29 23:47:03 +  -  -  -  -  -  -  -  -  +
+8 |  ♜  ♞  ♝  ♛  ♚  ♝  ♞  ♜  |
+
+7 |  ♟  ♟  ♟  ♟  ♟  ♟  ♟  ♟  |
+
+6 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+5 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+4 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+3 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+2 |  ♙  ♙  ♙  ♙  ♙  ♙  ♙  ♙  |
+
+1 |  ♖  ♘  ♗  ♕  ♔  ♗  ♘  ♖  |
+
++  -  -  -  -  -  -  -  -  +
+   a   b  c  d  e  f  g  h  
+
+
+debug 2026/10/29 23:56:32 +  -  -  -  -  -  -  -  -  +
+8 |  ♜  ♞  ♝  ♛  ♚  ♝  ♞  ♜  |
+
+7 |  ♟  ♟  ♟  ♟  ♟  ♟  ♟  ♟  |
+
+6 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+5 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+4 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+3 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+2 |  ♙  ♙  ♙  ♙  ♙  ♙  ♙  ♙  |
+
+1 |  ♖  ♘  ♗  ♕  ♔  ♗  ♘  ♖  |
+
++  -  -  -  -  -  -  -  -  +
+   a   b  c  d  e  f  g  h  
+
+
+debug 2026/10/29 23:56:32 +  -  -  -  -  -  -  -  -  +
+8 |  ♜  ♞  ♝  ♛  ♚  ♝  ♞  ♜  |
+
+7 |  ♟  ♟  ♟  ♟  ♟  ♟  ♟  ♟  |
+
+6 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+5 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+4 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+3 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+2 |  ♙  ♙  ♙  ♙  ♙  ♙  ♙  ♙  |
+
+1 |  ♖  ♘  ♗  ♕  ♔  ♗  ♘  ♖  |
+
++  -  -  -  -  -  -  -  -  +
+   a   b  c  d  e  f  g  h  
+
+
+debug 2026/10/30 00:01:17 +  -  -  -  -  -  -  -  -  +
+8 |  ♜  ♞  ♝  ♛  ♚  ♝  ♞  ♜  |
+
+7 |  ♟  ♟  ♟  ♟  ♟  ♟  ♟  ♟  |
+
+6 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+5 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+4 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+3 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+2 |  ♙  ♙  ♙  ♙  ♙  ♙  ♙  ♙  |
+
+1 |  ♖  ♘  ♗  ♕  ♔  ♗  ♘  ♖  |
+
++  -  -  -  -  -  -  -  -  +
+   a   b  c  d  e  f  g  h  
+
+
+debug 2026/10/30 00:01:17 +  -  -  -  -  -  -  -  -  +
+8 |  ♜  ♞  ♝  ♛  ♚  ♝  ♞  ♜  |
+
+7 |  ♟  ♟  ♟  ♟  ♟  ♟  ♟  ♟  |
+
+6 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+5 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+4 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+3 |  ▪  ▪  ▪  ▪  ▪  ▪  ▪  ▪  |
+
+2 |  ♙  ♙  ♙  ♙  ♙  ♙  ♙  ♙  |
+
+1 |  ♖  ♘  ♗  ♕  ♔  ♗  ♘  ♖  |
+
++  -  -  -  -  -  -  -  -  +
+   a   b  c  d  e  f  g  h  
+
+

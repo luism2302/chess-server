@@ -3,6 +3,7 @@ package game
 import (
 	"errors"
 	"slices"
+	"strings"
 	"unicode"
 )
 
@@ -13,6 +14,24 @@ var (
 
 func parseFEN(fen string) board {
 	return board{}
+}
+
+func parseFENBoard(fenBoard string) ([][]square, error) {
+	ranksText := strings.Split(fenBoard, "/")
+	if len(ranksText) != 8 {
+		return nil, ErrInvalidFenCode
+	}
+
+	boardSquares := [][]square{}
+
+	for _, r := range ranksText {
+		rank, err := parseFENRank(r)
+		if err != nil {
+			return nil, err
+		}
+		boardSquares = append(boardSquares, rank)
+	}
+	return boardSquares, nil
 }
 
 func parseFENRank(rank string) ([]square, error) {

@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	ErrInvalidTurn   = errors.New("Other player's turn")
-	ErrSelectedEmpty = errors.New("Selected an empty square")
+	ErrInvalidTurn   = errors.New("other player's turn")
+	ErrSelectedEmpty = errors.New("selected an empty square")
 )
 
 type Game struct {
@@ -45,6 +45,7 @@ func (g *Game) BoardRepr() string {
 	builder.WriteString(border)
 	builder.WriteString(cols)
 	builder.WriteString("\n\n")
+	log.Println(builder.String())
 	return builder.String()
 }
 

@@ -32,11 +32,11 @@ func newPawn(color bool) *pawn {
 }
 
 func (p *pawn) getAvailableMoves(pos coords, board board) []coords {
-	verticalOffset := 1
+	verticalOffset := -1
 	horizontalOffset := 1
 
 	if !p.isWhite {
-		verticalOffset = -1
+		verticalOffset = 1
 	}
 
 	// upper and lower boundries
