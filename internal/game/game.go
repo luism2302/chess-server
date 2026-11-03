@@ -8,24 +8,43 @@ import (
 	"strings"
 )
 
+const (
+	initialFen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+)
+
 var (
 	ErrInvalidTurn   = errors.New("other player's turn")
 	ErrSelectedEmpty = errors.New("selected an empty square")
 )
 
+type castlingRights struct {
+	canKingSide  bool
+	canQueenSide bool
+}
 type Game struct {
-	board       board
-	isWhiteTurn bool
+	board               board
+	blackCastlingRights castlingRights
+	whiteCastlingRights castlingRights
+	enPassantSquare     string
+	isWhiteTurn         bool
 }
 
-func New() *Game {
-	return &Game{
+func New(fen string) (*Game, error) {
+	game := &Game{
 		board: board{
-			squares: startingSquares,
-			coords:  initializeCoordsMap(),
+			coords: initializeCoordsMap(),
 		},
-		isWhiteTurn: true,
 	}
+
+	if fen == "" {
+		fen = initialFen
+	}
+
+	if err := game.parseFENPosition(fen); err != nil {
+		return nil, err
+	}
+	log.Println(game)
+	return game, nil
 }
 
 func (g *Game) BoardRepr() string {
@@ -45,7 +64,6 @@ func (g *Game) BoardRepr() string {
 	builder.WriteString(border)
 	builder.WriteString(cols)
 	builder.WriteString("\n\n")
-	log.Println(builder.String())
 	return builder.String()
 }
 
@@ -58,19 +76,19 @@ func (g *Game) Update(move string) error {
 	pieceAtStart := g.getPieceAtCoords(startingCoords)
 	pieceAtEnd := g.getPieceAtCoords(endingCoords)
 
-	if pieceAtEnd.getPieceColor() == pieceAtStart.getPieceColor() && pieceAtEnd.getPieceVal() != EmptyVal {
-		return ErrInvalidMove
-	}
-
 	if pieceAtStart.getPieceVal() == EmptyVal {
 		return ErrSelectedEmpty
 	}
 
-	if pieceAtStart.getPieceColor() == g.isWhiteTurn {
+	if pieceAtStart.getPieceColor() != g.isWhiteTurn {
 		return ErrInvalidTurn
 	}
 
-	availableMoves := pieceAtStart.getAvailableMoves(startingCoords, g.board)
+	if pieceAtEnd.getPieceColor() == pieceAtStart.getPieceColor() && pieceAtEnd.getPieceVal() != EmptyVal {
+		return ErrInvalidMove
+	}
+
+	availableMoves := pieceAtStart.getAvailableMoves(startingCoords, g.board, g)
 
 	log.Printf("available moves: %v", availableMoves)
 
@@ -79,8 +97,19 @@ func (g *Game) Update(move string) error {
 		g.board = updatedBoard
 		g.isWhiteTurn = !g.isWhiteTurn
 
-		switch pieceAtStart {
+		switch v := pieceAtStart.(type) {
+		case *pawn:
+			if distance(startingCoords.row, endingCoords.row) == 2 {
+				verticalOffset := -1
+				if v.isWhite {
+					verticalOffset = 1
+				}
+				enPassantSquareCoords := coords{row: endingCoords.row + verticalOffset, col: endingCoords.col}
+				g.coordsToSquareName(enPassantSquareCoords)
+				return nil
+			}
 		}
+		g.enPassantSquare = ""
 
 	} else {
 		return ErrInvalidMove
@@ -125,27 +154,40 @@ func (g *Game) getPieceAtCoords(startCoords coords) piece {
 	return piece
 }
 
-func (g *Game) updateBoard(piece piece, startAt coords, endAt coords) board {
+func (g *Game) updateBoard(pieceMoved piece, startAt coords, endAt coords) board {
 	updatedBoard := g.board
 	updatedStartSquare := square{pieceAt: newEmpty(), isOccupied: false}
 	updatedBoard.squares[startAt.row][startAt.col] = updatedStartSquare
 
-	updatedEndSquare := square{pieceAt: piece, isOccupied: true}
+	updatedEndSquare := square{pieceAt: pieceMoved, isOccupied: true}
 	updatedBoard.squares[endAt.row][endAt.col] = updatedEndSquare
 
-	g.updatePiece(piece, startAt, endAt)
+	switch v := pieceMoved.(type) {
+	case *pawn:
+		if g.enPassantSquare != "" && endAt == g.board.coords[g.enPassantSquare] {
+			updatedEnPassantSquare := square{pieceAt: newEmpty(), isOccupied: false}
+			updateCoords := g.updatePassantCoords(v, endAt)
+			updatedBoard.squares[updateCoords.row][updateCoords.col] = updatedEnPassantSquare
+		}
+	}
 
 	return updatedBoard
 }
 
-func (g *Game) updatePiece(piece piece, startAt coords, endAt coords) {
-	switch v := piece.(type) {
-	case *pawn:
-		if v.isFirstMove {
-			v.updateFirstMove()
-			if endAt.row-startAt.row == 2 || endAt.row-startAt.row == -2 {
-				v.enPassantable = true
-			}
+func (g *Game) coordsToSquareName(c coords) {
+	for squareName, coord := range g.board.coords {
+		if c == coord {
+			g.enPassantSquare = squareName
+			return
 		}
 	}
+}
+
+func (g *Game) updatePassantCoords(pawn *pawn, endingCoords coords) coords {
+	verticalOffset := -1
+	if !pawn.getPieceColor() {
+		verticalOffset = 1
+	}
+
+	return coords{row: endingCoords.row - verticalOffset, col: endingCoords.col}
 }

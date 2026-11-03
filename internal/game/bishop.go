@@ -24,7 +24,7 @@ func newBishop(color bool) *bishop {
 	}
 }
 
-func (b *bishop) getAvailableMoves(pos coords, board board) []coords {
+func (b *bishop) getAvailableMoves(pos coords, board board, game *Game) []coords {
 	return []coords{}
 }
 

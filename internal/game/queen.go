@@ -24,7 +24,7 @@ func newQueen(color bool) *queen {
 	}
 }
 
-func (q *queen) getAvailableMoves(pos coords, board board) []coords {
+func (q *queen) getAvailableMoves(pos coords, board board, game *Game) []coords {
 	return []coords{}
 }
 

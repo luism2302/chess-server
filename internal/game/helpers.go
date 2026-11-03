@@ -12,8 +12,41 @@ var (
 	ErrInvalidFenCode  = errors.New("invalid fen code")
 )
 
-func parseFEN(fen string) board {
-	return board{}
+func (g *Game) parseFENPosition(fen string) error {
+	parts := strings.Split(fen, " ")
+
+	if len(parts) != 6 {
+		return ErrInvalidFenCode
+	}
+
+	boardPart := parts[0]
+	parsedBoard, err := parseFENBoard(boardPart)
+	if err != nil {
+		return err
+	}
+
+	g.board.squares = parsedBoard
+
+	turnPart := parts[1]
+	switch turnPart {
+	case "w":
+		g.isWhiteTurn = true
+	case "b":
+		g.isWhiteTurn = false
+	default:
+		return ErrInvalidFenCode
+	}
+
+	castlingPart := parts[2]
+	whiteCastlingRights, blackCastlingRights, err := parseFENCastling(castlingPart)
+	if err != nil {
+		return err
+	}
+
+	g.whiteCastlingRights = whiteCastlingRights
+	g.blackCastlingRights = blackCastlingRights
+
+	return nil
 }
 
 func parseFENBoard(fenBoard string) ([][]square, error) {
@@ -81,4 +114,46 @@ func parseFENRank(rank string) ([]square, error) {
 	}
 
 	return row, nil
+}
+
+func parseFENCastling(castlingPart string) (castlingRights, castlingRights, error) {
+	if castlingPart == "-" {
+		return castlingRights{}, castlingRights{}, nil
+	}
+
+	whiteCastlingRights := castlingRights{}
+	blackCastlingRights := castlingRights{}
+
+	seen := make(map[rune]struct{})
+
+	for _, ch := range castlingPart {
+		if _, ok := seen[ch]; ok {
+			return castlingRights{}, castlingRights{}, ErrInvalidFenCode
+		} else {
+			seen[ch] = struct{}{}
+		}
+
+		switch ch {
+		case 'K':
+			whiteCastlingRights.canKingSide = true
+		case 'Q':
+			whiteCastlingRights.canQueenSide = true
+		case 'k':
+			blackCastlingRights.canKingSide = true
+		case 'q':
+			blackCastlingRights.canQueenSide = true
+		default:
+			return castlingRights{}, castlingRights{}, ErrInvalidFenCode
+		}
+	}
+
+	return whiteCastlingRights, blackCastlingRights, nil
+}
+
+func distance(a, b int) int {
+	result := a - b
+	if result < 0 {
+		return result * -1
+	}
+	return result
 }

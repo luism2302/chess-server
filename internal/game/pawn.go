@@ -2,7 +2,6 @@ package game
 
 import (
 	"fmt"
-	"log"
 )
 
 const (
@@ -10,11 +9,9 @@ const (
 )
 
 type pawn struct {
-	isWhite       bool
-	val           int
-	isFirstMove   bool
-	enPassantable bool
-	pieceRune     rune
+	isWhite   bool
+	val       int
+	pieceRune rune
 }
 
 func newPawn(color bool) *pawn {
@@ -23,15 +20,13 @@ func newPawn(color bool) *pawn {
 		pieceRune = '\u2659'
 	}
 	return &pawn{
-		isWhite:       color,
-		val:           PawnVal,
-		isFirstMove:   true,
-		enPassantable: false,
-		pieceRune:     pieceRune,
+		isWhite:   color,
+		val:       PawnVal,
+		pieceRune: pieceRune,
 	}
 }
 
-func (p *pawn) getAvailableMoves(pos coords, board board) []coords {
+func (p *pawn) getAvailableMoves(pos coords, board board, game *Game) []coords {
 	verticalOffset := -1
 	horizontalOffset := 1
 
@@ -45,30 +40,50 @@ func (p *pawn) getAvailableMoves(pos coords, board board) []coords {
 	}
 
 	moves := []coords{}
+	upByOneSquare := board.squares[pos.row+verticalOffset][pos.col]
+	upByOneRow := pos.row + verticalOffset
 
-	if !board.squares[pos.row+verticalOffset][pos.col].isOccupied {
-		moves = append(moves, coords{row: pos.row + verticalOffset, col: pos.col})
+	if !upByOneSquare.isOccupied {
+		moves = append(moves, coords{row: upByOneRow, col: pos.col})
 	}
 
-	if p.isFirstMove {
-		if !board.squares[pos.row+2*verticalOffset][pos.col].isOccupied {
-			moves = append(moves, coords{row: pos.row + 2*verticalOffset, col: pos.col})
+	// if white and in rank 6 (in the grid, not the board notation) , this the pawn's first move, if black, check rank 1
+	if p.isWhite {
+		if pos.row == 6 {
+			upByTwoSquare := board.squares[pos.row+2*verticalOffset][pos.col]
+			upByTwoRow := pos.row + 2*verticalOffset
+			if !upByTwoSquare.isOccupied && !upByOneSquare.isOccupied {
+				moves = append(moves, coords{row: upByTwoRow, col: pos.col})
+			}
+		}
+	} else {
+		if pos.row == 1 {
+			upByTwoSquare := board.squares[pos.row+2*verticalOffset][pos.col]
+			upByTwoRow := pos.row + 2*verticalOffset
+			if !upByTwoSquare.isOccupied && !upByOneSquare.isOccupied {
+				moves = append(moves, coords{row: upByTwoRow, col: pos.col})
+			}
+
 		}
 	}
 
+	enPassantCoords := game.board.coords[game.enPassantSquare]
 	if pos.col+horizontalOffset <= 7 {
-
-		log.Print("checking take at edge h")
 		upRightSquare := board.squares[pos.row+verticalOffset][pos.col+horizontalOffset]
-		if upRightSquare.isOccupied {
+		upRightCoords := coords{row: pos.row + verticalOffset, col: pos.col + horizontalOffset}
+		if upRightSquare.isOccupied && upRightSquare.pieceAt.getPieceColor() != p.getPieceColor() {
+			moves = append(moves, coords{row: pos.row + verticalOffset, col: pos.col + horizontalOffset})
+		} else if game.enPassantSquare != "" && enPassantCoords == upRightCoords {
 			moves = append(moves, coords{row: pos.row + verticalOffset, col: pos.col + horizontalOffset})
 		}
 	}
 
 	if pos.col-horizontalOffset >= 0 {
-		log.Print("checking take at edge a")
 		upLeftSquare := board.squares[pos.row+verticalOffset][pos.col-horizontalOffset]
-		if upLeftSquare.isOccupied {
+		upLeftCoords := coords{row: pos.row + verticalOffset, col: pos.col - horizontalOffset}
+		if upLeftSquare.isOccupied && upLeftSquare.pieceAt.getPieceColor() != p.getPieceColor() {
+			moves = append(moves, coords{row: pos.row + verticalOffset, col: pos.col - horizontalOffset})
+		} else if game.enPassantSquare != "" && enPassantCoords == upLeftCoords {
 			moves = append(moves, coords{row: pos.row + verticalOffset, col: pos.col - horizontalOffset})
 		}
 	}
@@ -90,10 +105,6 @@ func (p *pawn) getPieceRune() rune {
 	return p.pieceRune
 }
 
-func (p *pawn) updateFirstMove() {
-	p.isFirstMove = false
-}
-
 func (p *pawn) String() string {
-	return fmt.Sprintf("Pawn{color: %t, isFirstMove: %t, isEnpassantable: %t}", p.isWhite, p.isFirstMove, p.enPassantable)
+	return fmt.Sprintf("Pawn{color: %t}", p.isWhite)
 }

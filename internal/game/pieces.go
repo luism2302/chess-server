@@ -5,12 +5,12 @@ import (
 )
 
 var (
-	ErrUnknownPieceCode = errors.New("Unknown Piece")
-	ErrInvalidMove      = errors.New("Invalid Move")
+	ErrUnknownPieceCode = errors.New("unknown Piece")
+	ErrInvalidMove      = errors.New("invalid Move")
 )
 
 type piece interface {
-	getAvailableMoves(pos coords, board board) []coords
+	getAvailableMoves(pos coords, board board, game *Game) []coords
 	getPieceColor() bool
 	getPieceVal() int
 	getPieceRune() rune

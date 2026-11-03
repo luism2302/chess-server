@@ -28,7 +28,10 @@ func TestValidateMove(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			game := New()
+			game, err := New("")
+			if err != nil {
+				t.Fatal(err)
+			}
 			gotStartingCoords, gotEndingCoords, err := game.validateMove(tc.moveInput)
 
 			if tc.expectedError {
@@ -182,6 +185,21 @@ func TestParseFENBoard(t *testing.T) {
 			},
 			expectedErr: false,
 		},
+		{
+			name:          "random invalid position",
+			inputFENBoard: "rp3pk1/8/npq3br/1n1pb/K1R2PPR/2N2Q2/P4B1N/B2P4",
+			expectedSquares: [][]square{
+				{{newRook(false), true}, {newPawn(false), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(false), true}, {newKing(false), true}, {newEmpty(), false}},
+				{{newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
+				{{newKnight(false), true}, {newPawn(false), true}, {newQueen(false), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newBishop(false), true}, {newRook(false), true}},
+				{{newEmpty(), false}, {newKnight(false), true}, {newEmpty(), false}, {newPawn(false), true}, {newBishop(false), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
+				{{newKing(true), true}, {newEmpty(), false}, {newRook(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(true), true}, {newPawn(true), true}, {newRook(true), true}},
+				{{newEmpty(), false}, {newEmpty(), false}, {newKnight(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newQueen(true), true}, {newEmpty(), false}, {newEmpty(), false}},
+				{{newPawn(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newBishop(true), true}, {newEmpty(), false}, {newKnight(true), true}},
+				{{newBishop(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
+			},
+			expectedErr: true,
+		},
 	}
 
 	for _, tc := range testCases {
@@ -192,6 +210,67 @@ func TestParseFENBoard(t *testing.T) {
 			} else {
 				assert.NoError(t, err, "expected a nil error")
 				assert.Equal(t, got, tc.expectedSquares)
+			}
+		})
+	}
+}
+
+func TestParseFENCastling(t *testing.T) {
+	type testCase struct {
+		name          string
+		inputCastling string
+		expectedWhite castlingRights
+		expectedBlack castlingRights
+		expectedError bool
+	}
+
+	testCases := []testCase{
+		{
+			name:          "initial rights",
+			inputCastling: "KQkq",
+			expectedWhite: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlack: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedError: false,
+		},
+		{
+			name:          "only white, queen side",
+			inputCastling: "Q",
+			expectedWhite: castlingRights{canKingSide: false, canQueenSide: true},
+			expectedBlack: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedError: false,
+		},
+		{
+			name:          "white king side, black queen side",
+			inputCastling: "Kq",
+			expectedWhite: castlingRights{canKingSide: true, canQueenSide: false},
+			expectedBlack: castlingRights{canKingSide: false, canQueenSide: true},
+			expectedError: false,
+		},
+		{
+			name:          "invalid castling",
+			inputCastling: "KKKKKKq",
+			expectedWhite: castlingRights{},
+			expectedBlack: castlingRights{},
+			expectedError: true,
+		},
+		{
+			name:          "invalid castling symbol",
+			inputCastling: "Kl",
+			expectedWhite: castlingRights{},
+			expectedBlack: castlingRights{},
+			expectedError: true,
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			gotWhite, gotBlack, err := parseFENCastling(tc.inputCastling)
+			if tc.expectedError {
+				assert.Error(t, err, "expected an error but got nil")
+			} else {
+				assert.NoError(t, err, "expected a nil error")
+				assert.Equal(t, gotWhite, tc.expectedWhite)
+				assert.Equal(t, gotBlack, tc.expectedBlack)
 			}
 		})
 	}

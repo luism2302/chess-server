@@ -27,7 +27,7 @@ func newKing(color bool) *king {
 	}
 }
 
-func (k *king) getAvailableMoves(pos coords, board board) []coords {
+func (k *king) getAvailableMoves(pos coords, board board, game *Game) []coords {
 	return []coords{}
 }
 

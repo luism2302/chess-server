@@ -26,7 +26,7 @@ func newRook(color bool) *rook {
 	}
 }
 
-func (r *rook) getAvailableMoves(pos coords, board board) []coords {
+func (r *rook) getAvailableMoves(pos coords, board board, game *Game) []coords {
 	return []coords{}
 }
 

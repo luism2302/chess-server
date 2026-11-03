@@ -16,7 +16,7 @@ func newEmpty() *empty {
 	}
 }
 
-func (e *empty) getAvailableMoves(pos coords, board board) []coords {
+func (e *empty) getAvailableMoves(pos coords, board board, game *Game) []coords {
 	return []coords{}
 }
 

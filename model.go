@@ -19,16 +19,20 @@ type model struct {
 	errs      string
 }
 
-func newModel() *model {
+func newModel(fen string) (*model, error) {
 	mf := textinput.New()
 	mf.SetWidth(30)
 	mf.Placeholder = "Your move here: e.g e2-e4"
 	mf.Focus()
+	game, err := game.New(fen)
+	if err != nil {
+		return nil, err
+	}
 	return &model{
-		game:      game.New(),
+		game:      game,
 		moveField: mf,
 		styles:    defaultStyles(),
-	}
+	}, err
 }
 
 func (m *model) Init() tea.Cmd {
