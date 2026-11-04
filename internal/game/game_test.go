@@ -59,14 +59,14 @@ func TestParseFENRank(t *testing.T) {
 			name:         "initial board, black",
 			inputFENRank: "rnbqkbnr",
 			expectedRank: []square{
-				{pieceAt: newRook(false), isOccupied: true},
-				{pieceAt: newKnight(false), isOccupied: true},
-				{pieceAt: newBishop(false), isOccupied: true},
-				{pieceAt: newQueen(false), isOccupied: true},
-				{pieceAt: newKing(false), isOccupied: true},
-				{pieceAt: newBishop(false), isOccupied: true},
-				{pieceAt: newKnight(false), isOccupied: true},
-				{pieceAt: newRook(false), isOccupied: true},
+				{pieceAt: newRook(black), isOccupied: true},
+				{pieceAt: newKnight(black), isOccupied: true},
+				{pieceAt: newBishop(black), isOccupied: true},
+				{pieceAt: newQueen(black), isOccupied: true},
+				{pieceAt: newKing(black), isOccupied: true},
+				{pieceAt: newBishop(black), isOccupied: true},
+				{pieceAt: newKnight(black), isOccupied: true},
+				{pieceAt: newRook(black), isOccupied: true},
 			},
 			expectedErr: false,
 		},
@@ -74,14 +74,14 @@ func TestParseFENRank(t *testing.T) {
 			name:         "initial board, white",
 			inputFENRank: "RNBQKBNR",
 			expectedRank: []square{
-				{pieceAt: newRook(true), isOccupied: true},
-				{pieceAt: newKnight(true), isOccupied: true},
-				{pieceAt: newBishop(true), isOccupied: true},
-				{pieceAt: newQueen(true), isOccupied: true},
-				{pieceAt: newKing(true), isOccupied: true},
-				{pieceAt: newBishop(true), isOccupied: true},
-				{pieceAt: newKnight(true), isOccupied: true},
-				{pieceAt: newRook(true), isOccupied: true},
+				{pieceAt: newRook(white), isOccupied: true},
+				{pieceAt: newKnight(white), isOccupied: true},
+				{pieceAt: newBishop(white), isOccupied: true},
+				{pieceAt: newQueen(white), isOccupied: true},
+				{pieceAt: newKing(white), isOccupied: true},
+				{pieceAt: newBishop(white), isOccupied: true},
+				{pieceAt: newKnight(white), isOccupied: true},
+				{pieceAt: newRook(white), isOccupied: true},
 			},
 			expectedErr: false,
 		},
@@ -122,14 +122,14 @@ func TestParseFENRank(t *testing.T) {
 			name:         "valid row, rand position",
 			inputFENRank: "pQ1r1nPP",
 			expectedRank: []square{
-				{pieceAt: newPawn(false), isOccupied: true},
-				{pieceAt: newQueen(true), isOccupied: true},
+				{pieceAt: newPawn(black), isOccupied: true},
+				{pieceAt: newQueen(white), isOccupied: true},
 				{pieceAt: newEmpty(), isOccupied: false},
-				{pieceAt: newRook(false), isOccupied: true},
+				{pieceAt: newRook(black), isOccupied: true},
 				{pieceAt: newEmpty(), isOccupied: false},
-				{pieceAt: newKnight(false), isOccupied: true},
-				{pieceAt: newPawn(true), isOccupied: true},
-				{pieceAt: newPawn(true), isOccupied: true},
+				{pieceAt: newKnight(black), isOccupied: true},
+				{pieceAt: newPawn(white), isOccupied: true},
+				{pieceAt: newPawn(white), isOccupied: true},
 			},
 			expectedErr: false,
 		},
@@ -160,14 +160,14 @@ func TestParseFENBoard(t *testing.T) {
 			name:          "starting board",
 			inputFENBoard: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR",
 			expectedSquares: [][]square{
-				{{newRook(false), true}, {newKnight(false), true}, {newBishop(false), true}, {newQueen(false), true}, {newKing(false), true}, {newBishop(false), true}, {newKnight(false), true}, {newRook(false), true}},
-				{{newPawn(false), true}, {newPawn(false), true}, {newPawn(false), true}, {newPawn(false), true}, {newPawn(false), true}, {newPawn(false), true}, {newPawn(false), true}, {newPawn(false), true}},
+				{{newRook(black), true}, {newKnight(black), true}, {newBishop(black), true}, {newQueen(black), true}, {newKing(black), true}, {newBishop(black), true}, {newKnight(black), true}, {newRook(black), true}},
+				{{newPawn(black), true}, {newPawn(black), true}, {newPawn(black), true}, {newPawn(black), true}, {newPawn(black), true}, {newPawn(black), true}, {newPawn(black), true}, {newPawn(black), true}},
 				{{newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
 				{{newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
 				{{newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
 				{{newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
-				{{newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}, {newPawn(true), true}},
-				{{newRook(true), true}, {newKnight(true), true}, {newBishop(true), true}, {newQueen(true), true}, {newKing(true), true}, {newBishop(true), true}, {newKnight(true), true}, {newRook(true), true}},
+				{{newPawn(white), true}, {newPawn(white), true}, {newPawn(white), true}, {newPawn(white), true}, {newPawn(white), true}, {newPawn(white), true}, {newPawn(white), true}, {newPawn(white), true}},
+				{{newRook(white), true}, {newKnight(white), true}, {newBishop(white), true}, {newQueen(white), true}, {newKing(white), true}, {newBishop(white), true}, {newKnight(white), true}, {newRook(white), true}},
 			},
 			expectedErr: false,
 		},
@@ -175,14 +175,14 @@ func TestParseFENBoard(t *testing.T) {
 			name:          "random valid position",
 			inputFENBoard: "rp3pk1/8/npq3br/1n1pb3/K1R2PPR/2N2Q2/P4B1N/B2P4",
 			expectedSquares: [][]square{
-				{{newRook(false), true}, {newPawn(false), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(false), true}, {newKing(false), true}, {newEmpty(), false}},
+				{{newRook(black), true}, {newPawn(black), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(black), true}, {newKing(black), true}, {newEmpty(), false}},
 				{{newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
-				{{newKnight(false), true}, {newPawn(false), true}, {newQueen(false), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newBishop(false), true}, {newRook(false), true}},
-				{{newEmpty(), false}, {newKnight(false), true}, {newEmpty(), false}, {newPawn(false), true}, {newBishop(false), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
-				{{newKing(true), true}, {newEmpty(), false}, {newRook(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(true), true}, {newPawn(true), true}, {newRook(true), true}},
-				{{newEmpty(), false}, {newEmpty(), false}, {newKnight(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newQueen(true), true}, {newEmpty(), false}, {newEmpty(), false}},
-				{{newPawn(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newBishop(true), true}, {newEmpty(), false}, {newKnight(true), true}},
-				{{newBishop(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
+				{{newKnight(black), true}, {newPawn(black), true}, {newQueen(black), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newBishop(black), true}, {newRook(black), true}},
+				{{newEmpty(), false}, {newKnight(black), true}, {newEmpty(), false}, {newPawn(black), true}, {newBishop(black), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
+				{{newKing(white), true}, {newEmpty(), false}, {newRook(white), true}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(white), true}, {newPawn(white), true}, {newRook(white), true}},
+				{{newEmpty(), false}, {newEmpty(), false}, {newKnight(white), true}, {newEmpty(), false}, {newEmpty(), false}, {newQueen(white), true}, {newEmpty(), false}, {newEmpty(), false}},
+				{{newPawn(white), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newBishop(white), true}, {newEmpty(), false}, {newKnight(white), true}},
+				{{newBishop(white), true}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(white), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
 			},
 			expectedErr: false,
 		},
@@ -190,14 +190,14 @@ func TestParseFENBoard(t *testing.T) {
 			name:          "random invalid position",
 			inputFENBoard: "rp3pk1/8/npq3br/1n1pb/K1R2PPR/2N2Q2/P4B1N/B2P4",
 			expectedSquares: [][]square{
-				{{newRook(false), true}, {newPawn(false), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(false), true}, {newKing(false), true}, {newEmpty(), false}},
+				{{newRook(black), true}, {newPawn(black), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(black), true}, {newKing(black), true}, {newEmpty(), false}},
 				{{newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
-				{{newKnight(false), true}, {newPawn(false), true}, {newQueen(false), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newBishop(false), true}, {newRook(false), true}},
-				{{newEmpty(), false}, {newKnight(false), true}, {newEmpty(), false}, {newPawn(false), true}, {newBishop(false), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
-				{{newKing(true), true}, {newEmpty(), false}, {newRook(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(true), true}, {newPawn(true), true}, {newRook(true), true}},
-				{{newEmpty(), false}, {newEmpty(), false}, {newKnight(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newQueen(true), true}, {newEmpty(), false}, {newEmpty(), false}},
-				{{newPawn(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newBishop(true), true}, {newEmpty(), false}, {newKnight(true), true}},
-				{{newBishop(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(true), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
+				{{newKnight(black), true}, {newPawn(black), true}, {newQueen(black), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newBishop(black), true}, {newRook(black), true}},
+				{{newEmpty(), false}, {newKnight(black), true}, {newEmpty(), false}, {newPawn(black), true}, {newBishop(black), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
+				{{newKing(white), true}, {newEmpty(), false}, {newRook(white), true}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(white), true}, {newPawn(white), true}, {newRook(white), true}},
+				{{newEmpty(), false}, {newEmpty(), false}, {newKnight(white), true}, {newEmpty(), false}, {newEmpty(), false}, {newQueen(white), true}, {newEmpty(), false}, {newEmpty(), false}},
+				{{newPawn(white), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newBishop(white), true}, {newEmpty(), false}, {newKnight(black), true}},
+				{{newBishop(white), true}, {newEmpty(), false}, {newEmpty(), false}, {newPawn(white), true}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}, {newEmpty(), false}},
 			},
 			expectedErr: true,
 		},
@@ -286,7 +286,7 @@ func TestEnPassantFromFEN(t *testing.T) {
 		defenderPawnSquare string
 		attackerPawnSquare string
 		validEnPassant     bool
-		turnAfterEnPassant bool // true white false black
+		turnAfterEnPassant color // true white false black
 	}
 
 	testCases := []testCase{
@@ -298,7 +298,7 @@ func TestEnPassantFromFEN(t *testing.T) {
 			defenderPawnSquare: "f5",
 			attackerPawnSquare: "e5",
 			validEnPassant:     true,
-			turnAfterEnPassant: false,
+			turnAfterEnPassant: black,
 		},
 		{
 			name:               "enPassant in a6, to the left, white",
@@ -308,7 +308,7 @@ func TestEnPassantFromFEN(t *testing.T) {
 			defenderPawnSquare: "a5",
 			attackerPawnSquare: "b5",
 			validEnPassant:     true,
-			turnAfterEnPassant: false,
+			turnAfterEnPassant: black,
 		},
 		{
 			name:               "enPassant in e3, to the right, black",
@@ -318,7 +318,7 @@ func TestEnPassantFromFEN(t *testing.T) {
 			defenderPawnSquare: "e4",
 			attackerPawnSquare: "d4",
 			validEnPassant:     true,
-			turnAfterEnPassant: true,
+			turnAfterEnPassant: white,
 		},
 		{
 			name:               "enPassant in a3, to the left, black",
@@ -328,7 +328,7 @@ func TestEnPassantFromFEN(t *testing.T) {
 			defenderPawnSquare: "a4",
 			attackerPawnSquare: "b4",
 			validEnPassant:     true,
-			turnAfterEnPassant: true,
+			turnAfterEnPassant: white,
 		},
 		{
 			name:               "enPassant in a3, to the left, black, but not performed",
@@ -338,7 +338,7 @@ func TestEnPassantFromFEN(t *testing.T) {
 			defenderPawnSquare: "a4",
 			attackerPawnSquare: "b4",
 			validEnPassant:     false,
-			turnAfterEnPassant: true,
+			turnAfterEnPassant: white,
 		},
 	}
 
@@ -371,7 +371,11 @@ func TestEnPassantFromFEN(t *testing.T) {
 
 			} else {
 				// square where attacker pawn will end up
-				assert.Equal(t, newPawn(!tc.turnAfterEnPassant), takeToSquare.pieceAt)
+				testColor := white
+				if tc.turnAfterEnPassant == white {
+					testColor = black
+				}
+				assert.Equal(t, newPawn(testColor), takeToSquare.pieceAt)
 				assert.True(t, takeToSquare.isOccupied)
 				// square where attacker starts
 				assert.Equal(t, newEmpty(), attackerSquare.pieceAt)
@@ -496,7 +500,7 @@ func TestUpdate(t *testing.T) {
 			expectedEmptySquareErr:  false,
 			expectedWrongTurnErr:    false,
 			expectedInvalidMoveErr:  false,
-			pieceMoved:              newPawn(true),
+			pieceMoved:              newPawn(white),
 			expectedPass:            true,
 			expectedEnPassantSquare: "",
 		},
@@ -507,7 +511,7 @@ func TestUpdate(t *testing.T) {
 			expectedEmptySquareErr:  false,
 			expectedWrongTurnErr:    false,
 			expectedInvalidMoveErr:  false,
-			pieceMoved:              newPawn(true),
+			pieceMoved:              newPawn(white),
 			expectedPass:            true,
 			expectedEnPassantSquare: "",
 		},
@@ -518,7 +522,7 @@ func TestUpdate(t *testing.T) {
 			expectedEmptySquareErr:  false,
 			expectedWrongTurnErr:    false,
 			expectedInvalidMoveErr:  false,
-			pieceMoved:              newPawn(false),
+			pieceMoved:              newPawn(black),
 			expectedPass:            true,
 			expectedEnPassantSquare: "",
 		},
@@ -529,7 +533,7 @@ func TestUpdate(t *testing.T) {
 			expectedEmptySquareErr:  false,
 			expectedWrongTurnErr:    false,
 			expectedInvalidMoveErr:  false,
-			pieceMoved:              newPawn(true),
+			pieceMoved:              newPawn(white),
 			expectedPass:            true,
 			expectedEnPassantSquare: "a3",
 		},
@@ -540,7 +544,7 @@ func TestUpdate(t *testing.T) {
 			expectedEmptySquareErr:  false,
 			expectedWrongTurnErr:    false,
 			expectedInvalidMoveErr:  false,
-			pieceMoved:              newPawn(false),
+			pieceMoved:              newPawn(black),
 			expectedPass:            true,
 			expectedEnPassantSquare: "e6",
 		},
@@ -551,7 +555,7 @@ func TestUpdate(t *testing.T) {
 			expectedEmptySquareErr: false,
 			expectedWrongTurnErr:   false,
 			expectedInvalidMoveErr: true,
-			pieceMoved:             newPawn(true),
+			pieceMoved:             newPawn(white),
 			expectedPass:           false,
 		},
 		{
@@ -561,7 +565,7 @@ func TestUpdate(t *testing.T) {
 			expectedEmptySquareErr: false,
 			expectedWrongTurnErr:   false,
 			expectedInvalidMoveErr: true,
-			pieceMoved:             newPawn(true),
+			pieceMoved:             newPawn(white),
 			expectedPass:           false,
 		},
 		{
@@ -571,7 +575,7 @@ func TestUpdate(t *testing.T) {
 			expectedEmptySquareErr: false,
 			expectedWrongTurnErr:   false,
 			expectedInvalidMoveErr: true,
-			pieceMoved:             newPawn(false),
+			pieceMoved:             newPawn(black),
 			expectedPass:           false,
 		},
 	}
@@ -601,7 +605,7 @@ func TestUpdate(t *testing.T) {
 				assert.Equal(t, gameToUpdate.board.squares[startingCoords.row][startingCoords.col].pieceAt, newEmpty(), "starting square is not empty")
 				assert.False(t, gameToUpdate.board.squares[startingCoords.row][startingCoords.col].isOccupied, "starting square is occupied")
 				// turn changed
-				assert.NotEqual(t, tc.pieceMoved.getPieceColor(), gameToUpdate.isWhiteTurn, "turn didnt change")
+				assert.NotEqual(t, tc.pieceMoved.getPieceColor(), gameToUpdate.colorTurn, "turn didnt change")
 				// chech enPassant square
 				assert.Equal(t, tc.expectedEnPassantSquare, gameToUpdate.enPassantSquare, "expected different enpassant square")
 
@@ -618,6 +622,74 @@ func TestUpdate(t *testing.T) {
 					assert.Equal(t, gameToUpdate, gameToCheckAgainst, "expected games to be the same")
 				}
 			}
+		})
+	}
+}
+
+func TestGetMovesKnight(t *testing.T) {
+	type testCase struct {
+		name                   string
+		startingFen            string
+		startingCoords         coords
+		expectedAvailableMoves []coords
+	}
+
+	testCases := []testCase{
+		{
+			name:                   "b1 white knight starting moves",
+			startingFen:            "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			startingCoords:         coords{row: 7, col: 1},
+			expectedAvailableMoves: []coords{{row: 5, col: 0}, {row: 5, col: 2}},
+		},
+		{
+			name:                   "g1 white knight starting moves",
+			startingFen:            "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			startingCoords:         coords{row: 7, col: 6},
+			expectedAvailableMoves: []coords{{row: 5, col: 5}, {row: 5, col: 7}},
+		},
+		{
+			name:                   "b8 knight starting moves",
+			startingFen:            "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3 0 1",
+			startingCoords:         coords{row: 0, col: 1},
+			expectedAvailableMoves: []coords{{row: 2, col: 0}, {row: 2, col: 2}},
+		},
+		{
+			name:                   "g8 knight starting moves",
+			startingFen:            "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3 0 1",
+			startingCoords:         coords{row: 0, col: 6},
+			expectedAvailableMoves: []coords{{row: 2, col: 5}, {row: 2, col: 7}},
+		},
+		{
+			name:                   "white knight in the middle, all moves available",
+			startingFen:            "rnbqkbnr/pppppp2/8/3N2pp/8/8/PPPPPPPP/R1BQKBNR w KQkq g6 0 1",
+			startingCoords:         coords{row: 3, col: 3},
+			expectedAvailableMoves: []coords{{row: 1, col: 2}, {row: 2, col: 1}, {row: 1, col: 4}, {row: 4, col: 1}, {row: 5, col: 2}, {row: 5, col: 4}, {row: 4, col: 5}, {row: 2, col: 5}},
+		},
+		{
+			name:                   "black knight in the middle, some moves available",
+			startingFen:            "rnbqkbr1/pppp1p1p/5n2/8/2P1p1p1/1PNPP3/PBQ2PPP/R3KBNR b KQq - 0 1",
+			startingCoords:         coords{row: 2, col: 5},
+			expectedAvailableMoves: []coords{{row: 3, col: 3}, {row: 3, col: 7}},
+		},
+		{
+			name:                   "white knight in the middle, no moves available",
+			startingFen:            "rn2kb1r/ppp1qp1p/4bnp1/3pp3/2PPP3/1P3P2/P2N2PP/RNBQKB1R b KQkq - 0 1",
+			startingCoords:         coords{row: 6, col: 3},
+			expectedAvailableMoves: []coords{},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			game, err := New(tc.startingFen)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+
+			knight := game.getPieceAtCoords(tc.startingCoords)
+			moves := knight.getAvailableMoves(tc.startingCoords, game)
+
+			assert.ElementsMatch(t, tc.expectedAvailableMoves, moves, "expected different moves...")
 		})
 	}
 }

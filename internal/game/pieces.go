@@ -9,9 +9,17 @@ var (
 	ErrInvalidMove      = errors.New("invalid Move")
 )
 
+type color int
+
+const (
+	black color = iota
+	white
+	noColor
+)
+
 type piece interface {
-	getAvailableMoves(pos coords, board board, game *Game) []coords
-	getPieceColor() bool
+	getAvailableMoves(pos coords, game *Game) []coords
+	getPieceColor() color
 	getPieceVal() int
 	getPieceRune() rune
 	String() string

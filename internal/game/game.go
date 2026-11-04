@@ -26,7 +26,7 @@ type Game struct {
 	blackCastlingRights castlingRights
 	whiteCastlingRights castlingRights
 	enPassantSquare     string
-	isWhiteTurn         bool
+	colorTurn           color
 }
 
 func New(fen string) (*Game, error) {
@@ -79,7 +79,7 @@ func (g *Game) Update(move string) error {
 		return ErrSelectedEmpty
 	}
 
-	if pieceAtStart.getPieceColor() != g.isWhiteTurn {
+	if pieceAtStart.getPieceColor() != g.colorTurn {
 		return ErrInvalidTurn
 	}
 
@@ -87,20 +87,25 @@ func (g *Game) Update(move string) error {
 		return ErrInvalidMove
 	}
 
-	availableMoves := pieceAtStart.getAvailableMoves(startingCoords, g.board, g)
+	availableMoves := pieceAtStart.getAvailableMoves(startingCoords, g)
 
 	log.Printf("available moves: %v", availableMoves)
 
 	if slices.Contains(availableMoves, endingCoords) {
 		updatedBoard := g.updateBoard(pieceAtStart, startingCoords, endingCoords)
+
 		g.board = updatedBoard
-		g.isWhiteTurn = !g.isWhiteTurn
+		if g.colorTurn == white {
+			g.colorTurn = black
+		} else {
+			g.colorTurn = white
+		}
 
 		switch v := pieceAtStart.(type) {
 		case *pawn:
 			if distance(startingCoords.row, endingCoords.row) == 2 {
 				verticalOffset := -1
-				if v.isWhite {
+				if v.getPieceColor() == white {
 					verticalOffset = 1
 				}
 				enPassantSquareCoords := coords{row: endingCoords.row + verticalOffset, col: endingCoords.col}
@@ -184,7 +189,7 @@ func (g *Game) coordsToSquareName(c coords) {
 
 func (g *Game) updatePassantCoords(pawn *pawn, endingCoords coords) coords {
 	verticalOffset := -1
-	if !pawn.getPieceColor() {
+	if pawn.getPieceColor() == black {
 		verticalOffset = 1
 	}
 

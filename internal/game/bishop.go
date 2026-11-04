@@ -7,24 +7,28 @@ const (
 )
 
 type bishop struct {
-	isWhite   bool
+	color     color
 	val       int
 	pieceRune rune
 }
 
-func newBishop(color bool) *bishop {
-	pieceRune := '\u265D'
-	if color {
+func newBishop(color color) *bishop {
+	var pieceRune rune
+	switch color {
+	case white:
 		pieceRune = '\u2657'
+	case black:
+		pieceRune = '\u265D'
 	}
+
 	return &bishop{
-		isWhite:   color,
+		color:     color,
 		val:       BishopVal,
 		pieceRune: pieceRune,
 	}
 }
 
-func (b *bishop) getAvailableMoves(pos coords, board board, game *Game) []coords {
+func (b *bishop) getAvailableMoves(pos coords, game *Game) []coords {
 	return []coords{}
 }
 
@@ -32,8 +36,8 @@ func (b *bishop) getPieceVal() int {
 	return b.val
 }
 
-func (b *bishop) getPieceColor() bool {
-	return b.isWhite
+func (b *bishop) getPieceColor() color {
+	return b.color
 }
 
 func (b *bishop) getPieceRune() rune {
@@ -41,5 +45,5 @@ func (b *bishop) getPieceRune() rune {
 }
 
 func (b *bishop) String() string {
-	return fmt.Sprintf("Bishop{color: %t}", b.isWhite)
+	return fmt.Sprintf("Bishop{color: %v}", b.color)
 }

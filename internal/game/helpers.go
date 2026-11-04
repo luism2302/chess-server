@@ -30,9 +30,9 @@ func (g *Game) parseFENPosition(fen string) error {
 	turnPart := parts[1]
 	switch turnPart {
 	case "w":
-		g.isWhiteTurn = true
+		g.colorTurn = white
 	case "b":
-		g.isWhiteTurn = false
+		g.colorTurn = black
 	default:
 		return ErrInvalidFenCode
 	}
@@ -86,29 +86,29 @@ func parseFENRank(rank string) ([]square, error) {
 		case unicode.IsLetter(ch):
 			switch ch {
 			case 'k':
-				row = append(row, square{pieceAt: newKing(false), isOccupied: true})
+				row = append(row, square{pieceAt: newKing(black), isOccupied: true})
 			case 'K':
-				row = append(row, square{pieceAt: newKing(true), isOccupied: true})
+				row = append(row, square{pieceAt: newKing(white), isOccupied: true})
 			case 'q':
-				row = append(row, square{pieceAt: newQueen(false), isOccupied: true})
+				row = append(row, square{pieceAt: newQueen(black), isOccupied: true})
 			case 'Q':
-				row = append(row, square{pieceAt: newQueen(true), isOccupied: true})
+				row = append(row, square{pieceAt: newQueen(white), isOccupied: true})
 			case 'r':
-				row = append(row, square{pieceAt: newRook(false), isOccupied: true})
+				row = append(row, square{pieceAt: newRook(black), isOccupied: true})
 			case 'R':
-				row = append(row, square{pieceAt: newRook(true), isOccupied: true})
+				row = append(row, square{pieceAt: newRook(white), isOccupied: true})
 			case 'b':
-				row = append(row, square{pieceAt: newBishop(false), isOccupied: true})
+				row = append(row, square{pieceAt: newBishop(black), isOccupied: true})
 			case 'B':
-				row = append(row, square{pieceAt: newBishop(true), isOccupied: true})
+				row = append(row, square{pieceAt: newBishop(white), isOccupied: true})
 			case 'n':
-				row = append(row, square{pieceAt: newKnight(false), isOccupied: true})
+				row = append(row, square{pieceAt: newKnight(black), isOccupied: true})
 			case 'N':
-				row = append(row, square{pieceAt: newKnight(true), isOccupied: true})
+				row = append(row, square{pieceAt: newKnight(white), isOccupied: true})
 			case 'p':
-				row = append(row, square{pieceAt: newPawn(false), isOccupied: true})
+				row = append(row, square{pieceAt: newPawn(black), isOccupied: true})
 			case 'P':
-				row = append(row, square{pieceAt: newPawn(true), isOccupied: true})
+				row = append(row, square{pieceAt: newPawn(white), isOccupied: true})
 			default:
 				return []square{}, ErrInvalidFenPiece
 			}

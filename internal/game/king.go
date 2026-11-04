@@ -7,27 +7,28 @@ const (
 )
 
 type king struct {
-	isWhite     bool
-	val         int
-	isFirstMove bool
-	pieceRune   rune
+	color     color
+	val       int
+	pieceRune rune
 }
 
-func newKing(color bool) *king {
-	pieceRune := '\u265A'
-
-	if color {
+func newKing(color color) *king {
+	var pieceRune rune
+	switch color {
+	case white:
 		pieceRune = '\u2654'
+	case black:
+		pieceRune = '\u265A'
 	}
+
 	return &king{
-		isWhite:     color,
-		val:         KingVal,
-		isFirstMove: true,
-		pieceRune:   pieceRune,
+		color:     color,
+		val:       KingVal,
+		pieceRune: pieceRune,
 	}
 }
 
-func (k *king) getAvailableMoves(pos coords, board board, game *Game) []coords {
+func (k *king) getAvailableMoves(pos coords, game *Game) []coords {
 	return []coords{}
 }
 
@@ -35,8 +36,8 @@ func (k *king) getPieceVal() int {
 	return k.val
 }
 
-func (k *king) getPieceColor() bool {
-	return k.isWhite
+func (k *king) getPieceColor() color {
+	return k.color
 }
 
 func (k *king) getPieceRune() rune {
@@ -44,5 +45,5 @@ func (k *king) getPieceRune() rune {
 }
 
 func (k *king) String() string {
-	return fmt.Sprintf("King{color: %t, isFirstMove: %t}", k.isWhite, k.isFirstMove)
+	return fmt.Sprintf("King{color: %v}", k.color)
 }
