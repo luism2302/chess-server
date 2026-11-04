@@ -275,3 +275,124 @@ func TestParseFENCastling(t *testing.T) {
 		})
 	}
 }
+
+func TestEnPassantFromFEN(t *testing.T) {
+	type testCase struct {
+		name               string
+		initialFEN         string
+		captureMove        string
+		takeSquare         string
+		defenderPawnSquare string
+		attackerPawnSquare string
+		validEnPassant     bool
+		turnAfterEnPassant bool // true white false black
+	}
+
+	testCases := []testCase{
+		{
+			name:               "enPassant in f6, to the right, white",
+			initialFEN:         "rnbqkbnr/pppp2pp/8/4Pp2/8/8/PPP1PPPP/RNBQKBNR w KQkq f6 0 1",
+			captureMove:        "e5-f6",
+			takeSquare:         "f6",
+			defenderPawnSquare: "f5",
+			attackerPawnSquare: "e5",
+			validEnPassant:     true,
+			turnAfterEnPassant: false,
+		},
+		{
+			name:               "enPassant in a6, to the left, white",
+			initialFEN:         "rnbqkbnr/1p1ppppp/8/pPp5/8/8/P1PPPPPP/RNBQKBNR w KQkq a6 0 1",
+			captureMove:        "b5-a6",
+			takeSquare:         "a6",
+			defenderPawnSquare: "a5",
+			attackerPawnSquare: "b5",
+			validEnPassant:     true,
+			turnAfterEnPassant: false,
+		},
+		{
+			name:               "enPassant in e3, to the right, black",
+			initialFEN:         "rnbqkbnr/ppp1pppp/8/2P5/3pP3/8/PP1P1PPP/RNBQKBNR b KQkq e3 0 1",
+			captureMove:        "d4-e3",
+			takeSquare:         "e3",
+			defenderPawnSquare: "e4",
+			attackerPawnSquare: "d4",
+			validEnPassant:     true,
+			turnAfterEnPassant: true,
+		},
+		{
+			name:               "enPassant in a3, to the left, black",
+			initialFEN:         "rnbqkbnr/pp1ppppp/8/8/PpP5/8/3PPPPP/RNBQKBNR b KQkq a3 0 1",
+			captureMove:        "b4-a3",
+			takeSquare:         "a3",
+			defenderPawnSquare: "a4",
+			attackerPawnSquare: "b4",
+			validEnPassant:     true,
+			turnAfterEnPassant: true,
+		},
+		{
+			name:               "enPassant in a3, to the left, black, but not performed",
+			initialFEN:         "rnbqkbnr/pp1ppppp/8/8/PpP5/8/3PPPPP/RNBQKBNR b KQkq a3 0 1",
+			captureMove:        "b4-b3",
+			takeSquare:         "a3",
+			defenderPawnSquare: "a4",
+			attackerPawnSquare: "b4",
+			validEnPassant:     false,
+			turnAfterEnPassant: true,
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			game, err := New(tc.initialFEN)
+			if err != nil {
+				t.Fatalf("error creating game: %s", err.Error())
+			}
+
+			if err := callMoves(t, game, tc.captureMove); err != nil {
+				t.Fatal(err.Error())
+			}
+
+			takeToSquareCoords := game.board.coords[tc.takeSquare]
+			attackerSquareCoords := game.board.coords[tc.attackerPawnSquare]
+			defenderSquareCoords := game.board.coords[tc.defenderPawnSquare]
+
+			takeToSquare := game.board.squares[takeToSquareCoords.row][takeToSquareCoords.col]
+			attackerSquare := game.board.squares[attackerSquareCoords.row][attackerSquareCoords.col]
+			defenderSquare := game.board.squares[defenderSquareCoords.row][defenderSquareCoords.col]
+
+			if !tc.validEnPassant { // nothing should happen
+				// square where attacker pawn will end up
+				assert.Equal(t, newEmpty(), takeToSquare.pieceAt, "no enpassant, expected en passant square to be an empty square")
+				assert.False(t, takeToSquare.isOccupied, "no enpassant, expected enpassant ssquare to not be occupied")
+				// square where attacker starts
+				assert.Equal(t, newPawn(tc.turnAfterEnPassant), defenderSquare.pieceAt, "no enpasant, expected defender square to be the same")
+				assert.True(t, defenderSquare.isOccupied, "no enpassant, expected defender square to not be occupied")
+
+			} else {
+				// square where attacker pawn will end up
+				assert.Equal(t, newPawn(!tc.turnAfterEnPassant), takeToSquare.pieceAt)
+				assert.True(t, takeToSquare.isOccupied)
+				// square where attacker starts
+				assert.Equal(t, newEmpty(), attackerSquare.pieceAt)
+				assert.False(t, attackerSquare.isOccupied)
+				// square where defender starts
+				assert.Equal(t, newEmpty(), defenderSquare.pieceAt)
+				assert.False(t, defenderSquare.isOccupied)
+				assert.True(t, game.enPassantSquare == "")
+			}
+		})
+	}
+}
+
+func callMoves(t *testing.T, game *Game, moves ...string) error {
+	t.Helper()
+
+	for _, move := range moves {
+		err := game.Update(move)
+		if err != nil {
+			return fmt.Errorf("failed in move: %s. error: %w", move, err)
+		}
+	}
+
+	return nil
+}

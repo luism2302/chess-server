@@ -46,6 +46,14 @@ func (g *Game) parseFENPosition(fen string) error {
 	g.whiteCastlingRights = whiteCastlingRights
 	g.blackCastlingRights = blackCastlingRights
 
+	enPassantPart := parts[3]
+
+	_, ok := g.board.coords[enPassantPart]
+	if ok {
+		g.enPassantSquare = enPassantPart
+	} else {
+		g.enPassantSquare = ""
+	}
 	return nil
 }
 

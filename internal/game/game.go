@@ -43,7 +43,6 @@ func New(fen string) (*Game, error) {
 	if err := game.parseFENPosition(fen); err != nil {
 		return nil, err
 	}
-	log.Println(game)
 	return game, nil
 }
 
