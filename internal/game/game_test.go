@@ -2,6 +2,7 @@ package game
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -379,6 +380,243 @@ func TestEnPassantFromFEN(t *testing.T) {
 				assert.Equal(t, newEmpty(), defenderSquare.pieceAt)
 				assert.False(t, defenderSquare.isOccupied)
 				assert.True(t, game.enPassantSquare == "")
+			}
+		})
+	}
+}
+
+func TestUpdate(t *testing.T) {
+	type testCase struct {
+		name                    string
+		startingFEN             string
+		moveToTest              string
+		expectedEmptySquareErr  bool
+		expectedWrongTurnErr    bool
+		expectedInvalidMoveErr  bool
+		expectedPass            bool
+		pieceMoved              piece
+		expectedEnPassantSquare string
+	}
+
+	testCases := []testCase{
+		{
+			name:                   "starting empty square",
+			startingFEN:            "rnbqkbnr/pppp2pp/8/5p2/2PQ4/8/PP2PPPP/RNB1KBNR w KQkq f6 0 1",
+			moveToTest:             "e3-e4",
+			expectedEmptySquareErr: true,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: false,
+			expectedPass:           false,
+		},
+		{
+			name:                   "not blacks turn",
+			startingFEN:            "rnbqk2r/ppp2ppp/5n2/2bPp3/2P5/P4N2/1P1P1PPP/RNBQKB1R w KQkq - 0 1",
+			moveToTest:             "e5-e4",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   true,
+			expectedInvalidMoveErr: false,
+			expectedPass:           false,
+		},
+		{
+			name:                   "not whites turn",
+			startingFEN:            "rnbqkbnr/pppp1ppp/8/4p3/3P1P2/8/PPP1P1PP/RNBQKBNR b KQkq f3 0 1",
+			moveToTest:             "d4-e5",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   true,
+			expectedInvalidMoveErr: false,
+			expectedPass:           false,
+		},
+		{
+			name:                   "white tries to caputre same color piece",
+			startingFEN:            "rnbqkbnr/ppp3pp/3p1p2/4P3/5P2/8/PPP1P1PP/RNBQKBNR w KQkq - 0 1",
+			moveToTest:             "f4-e5",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			expectedPass:           false,
+		},
+		{
+			name:                   "invalid move from black",
+			startingFEN:            "rnbqkbnr/ppp2ppp/8/3pP3/2P5/8/PP2PPPP/RNBQKBNR b KQkq c3 0 1",
+			moveToTest:             "d5-c5",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			expectedPass:           false,
+		},
+		{
+			name:                   "pawn move to an occupied square",
+			startingFEN:            "rnbqkbnr/ppp1pppp/8/3p4/3P4/8/PPP1PPPP/RNBQKBNR w KQkq d6 0 1",
+			moveToTest:             "d4-d5",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			expectedPass:           false,
+		},
+		{
+			name:                   "invalid opening move, left",
+			startingFEN:            "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			moveToTest:             "e2-d3",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			expectedPass:           false,
+		},
+		{
+			name:                   "invalid opening move, right",
+			startingFEN:            "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			moveToTest:             "e2-f3",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			expectedPass:           false,
+		},
+		{
+			name:                   "invalid two square move",
+			startingFEN:            "rnbqkbnr/pppppppp/8/8/8/4P3/PPPP1PPP/RNBQKBNR w KQkq - 0 1",
+			moveToTest:             "e3-e5",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			expectedPass:           false,
+		},
+		{
+			name:                   "wrong formatted move",
+			startingFEN:            "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			moveToTest:             "e2e4",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			expectedPass:           false,
+		},
+		{
+			name:                    "valid white take move, right",
+			startingFEN:             "rnbqkbnr/pppp2pp/8/4pp2/2PP4/8/PP2PPPP/RNBQKBNR w KQkq f6 0 1",
+			moveToTest:              "d4-e5",
+			expectedEmptySquareErr:  false,
+			expectedWrongTurnErr:    false,
+			expectedInvalidMoveErr:  false,
+			pieceMoved:              newPawn(true),
+			expectedPass:            true,
+			expectedEnPassantSquare: "",
+		},
+		{
+			name:                    "valid white take move, left",
+			startingFEN:             "rnbqkbnr/1ppppppp/8/p7/1P6/8/P1PPPPPP/RNBQKBNR w KQkq a6 0 1",
+			moveToTest:              "b4-a5",
+			expectedEmptySquareErr:  false,
+			expectedWrongTurnErr:    false,
+			expectedInvalidMoveErr:  false,
+			pieceMoved:              newPawn(true),
+			expectedPass:            true,
+			expectedEnPassantSquare: "",
+		},
+		{
+			name:                    "valid black move",
+			startingFEN:             "rnbqkbnr/ppppp1pp/8/5p2/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3 0 1",
+			moveToTest:              "f5-f4",
+			expectedEmptySquareErr:  false,
+			expectedWrongTurnErr:    false,
+			expectedInvalidMoveErr:  false,
+			pieceMoved:              newPawn(false),
+			expectedPass:            true,
+			expectedEnPassantSquare: "",
+		},
+		{
+			name:                    "valid white 2 square move",
+			startingFEN:             "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			moveToTest:              "a2-a4",
+			expectedEmptySquareErr:  false,
+			expectedWrongTurnErr:    false,
+			expectedInvalidMoveErr:  false,
+			pieceMoved:              newPawn(true),
+			expectedPass:            true,
+			expectedEnPassantSquare: "a3",
+		},
+		{
+			name:                    "valid black 2 square move",
+			startingFEN:             "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3 0 1",
+			moveToTest:              "e7-e5",
+			expectedEmptySquareErr:  false,
+			expectedWrongTurnErr:    false,
+			expectedInvalidMoveErr:  false,
+			pieceMoved:              newPawn(false),
+			expectedPass:            true,
+			expectedEnPassantSquare: "e6",
+		},
+		{
+			name:                   "invalid two square move from white, piece in the middle",
+			startingFEN:            "rnbqkbnr/ppp1pppp/8/8/5P2/2Pp4/PP1PP1PP/RNBQKBNR w KQkq - 0 1",
+			moveToTest:             "d2-d4",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			pieceMoved:             newPawn(true),
+			expectedPass:           false,
+		},
+		{
+			name:                   "invalid two square move from white, piece at the end",
+			startingFEN:            "rnbqkbnr/pppp1ppp/8/3P4/4p3/8/PPP1PPPP/RNBQKBNR w KQkq - 0 1",
+			moveToTest:             "e2-e4",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			pieceMoved:             newPawn(true),
+			expectedPass:           false,
+		},
+		{
+			name:                   "invalid two square move from black, already moved",
+			startingFEN:            "rnbqkbnr/ppppp2p/6p1/4Pp2/3P4/8/PPP2PPP/RNBQKBNR b KQkq d3 0 1",
+			moveToTest:             "g6-g4",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			pieceMoved:             newPawn(false),
+			expectedPass:           false,
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			gameToUpdate, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error creating game: %s", err.Error())
+			}
+			gameToCheckAgainst, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error creating game: %s", err.Error())
+			}
+
+			err = gameToUpdate.Update(tc.moveToTest)
+			if tc.expectedPass {
+				assert.NoError(t, err, "expected a nil error")
+				moveParts := strings.Split(tc.moveToTest, "-")
+				startingCoords := gameToUpdate.board.coords[moveParts[0]]
+				endingCoords := gameToUpdate.board.coords[moveParts[1]]
+
+				// piece is at ending
+				assert.Equal(t, gameToUpdate.board.squares[endingCoords.row][endingCoords.col].pieceAt, tc.pieceMoved, "piece moved not at ending coords")
+				assert.True(t, gameToUpdate.board.squares[endingCoords.row][endingCoords.col].isOccupied, "ending coords are empty")
+				// starting square is empty
+				assert.Equal(t, gameToUpdate.board.squares[startingCoords.row][startingCoords.col].pieceAt, newEmpty(), "starting square is not empty")
+				assert.False(t, gameToUpdate.board.squares[startingCoords.row][startingCoords.col].isOccupied, "starting square is occupied")
+				// turn changed
+				assert.NotEqual(t, tc.pieceMoved.getPieceColor(), gameToUpdate.isWhiteTurn, "turn didnt change")
+				// chech enPassant square
+				assert.Equal(t, tc.expectedEnPassantSquare, gameToUpdate.enPassantSquare, "expected different enpassant square")
+
+			} else {
+				assert.Error(t, err, "expected a non nil error")
+				if tc.expectedEmptySquareErr {
+					assert.ErrorIs(t, err, ErrSelectedEmpty, "expected an empty square error")
+					assert.Equal(t, gameToUpdate, gameToCheckAgainst, "expected games to be the same")
+				} else if tc.expectedWrongTurnErr {
+					assert.ErrorIs(t, err, ErrInvalidTurn, "expected a wrong turn error")
+					assert.Equal(t, gameToUpdate, gameToCheckAgainst, "expected games to be the same")
+				} else if tc.expectedInvalidMoveErr {
+					assert.ErrorIs(t, err, ErrInvalidMove, "expected an invalid move error")
+					assert.Equal(t, gameToUpdate, gameToCheckAgainst, "expected games to be the same")
+				}
 			}
 		})
 	}
