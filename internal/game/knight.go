@@ -52,7 +52,7 @@ func (k *knight) getAvailableMoves(pos coords, game *Game) []coords {
 		}
 	}
 	// two down one right
-	if pos.row+2 <= 7 && pos.col+1 <= 0 {
+	if pos.row+2 <= 7 && pos.col+1 <= 7 {
 		targetSquare := game.board.squares[pos.row+2][pos.col+1]
 		if !targetSquare.isOccupied || targetSquare.pieceAt.getPieceColor() != k.getPieceColor() {
 			moves = append(moves, coords{row: pos.row + 2, col: pos.col + 1})

@@ -672,10 +672,10 @@ func TestGetMovesKnight(t *testing.T) {
 			expectedAvailableMoves: []coords{{row: 3, col: 3}, {row: 3, col: 7}},
 		},
 		{
-			name:                   "white knight in the middle, no moves available",
-			startingFen:            "rn2kb1r/ppp1qp1p/4bnp1/3pp3/2PPP3/1P3P2/P2N2PP/RNBQKB1R b KQkq - 0 1",
-			startingCoords:         coords{row: 6, col: 3},
-			expectedAvailableMoves: []coords{},
+			name:                   "black knight at the edge of board",
+			startingFen:            "rnbqkb1r/pppppppp/7n/8/5P2/8/PPPPP1PP/RNBQKBNR w KQkq - 0 1",
+			startingCoords:         coords{row: 2, col: 7},
+			expectedAvailableMoves: []coords{{row: 0, col: 6}, {row: 3, col: 5}, {row: 4, col: 6}},
 		},
 	}
 
@@ -690,6 +690,195 @@ func TestGetMovesKnight(t *testing.T) {
 			moves := knight.getAvailableMoves(tc.startingCoords, game)
 
 			assert.ElementsMatch(t, tc.expectedAvailableMoves, moves, "expected different moves...")
+		})
+	}
+}
+
+func TestKnightUpdateGame(t *testing.T) {
+	type expectedErr struct {
+		expected bool
+		errType  error
+	}
+
+	type testCase struct {
+		name        string
+		startingFEN string
+		move        string
+		expectedErr expectedErr
+		pieceMoved  piece
+	}
+
+	testCases := []testCase{
+		{
+			name:        "invalid white knight move, starting pos",
+			move:        "b1-d2",
+			startingFEN: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newKnight(white),
+		},
+		{
+			name:        "black knight opening move, valid",
+			move:        "g8-f6",
+			startingFEN: "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newKnight(black),
+		},
+		{
+			name:        "white knight takes pawn at d5, valid",
+			move:        "c3-d5",
+			startingFEN: "rnbqkb1r/ppp1pppp/5n2/3p4/2P5/2N5/PP1PPPPP/R1BQKBNR w KQkq d6 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newKnight(white),
+		},
+		{
+			name:        "invalid turn",
+			move:        "c3-d5",
+			startingFEN: "r1bqkb1r/ppppppp1/2n2n2/7p/2PP4/2N2N2/PP2PPPP/R1BQKB1R b KQkq - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidTurn},
+			pieceMoved:  newKnight(white),
+		},
+		{
+			name:        "wrong formatted move",
+			move:        "f3e4",
+			startingFEN: "rnbqkbnr/ppp2ppp/8/3pp3/8/2N2N2/PPPPPPPP/R1BQKB1R w KQkq e6 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newKnight(white),
+		},
+		{
+			name:        "black knight takes pawn at d4",
+			move:        "c6-d4",
+			startingFEN: "r1bqkbnr/pppppppp/2n5/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq - 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newKnight(black),
+		},
+		{
+			name:        "white knight takes pawn at f3",
+			move:        "e5-f3",
+			startingFEN: "rnbqkbnr/pppp2pp/8/4N3/8/2N1Pp2/PPPP1PPP/R1BQKB1R w KQkq - 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newKnight(white),
+		},
+		{
+			name:        "white knight has no moves",
+			move:        "f3-d2",
+			startingFEN: "5b1r/prqkppp1/b1np1n1p/4B1P1/3P3N/1P3N2/P2KPP1P/R4BR1 w - - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newKnight(white),
+		},
+		{
+			name:        "black knight at edege of board",
+			move:        "a1-b3",
+			startingFEN: "r1bqkbnr/pppppppp/8/3P4/8/1P3N2/P2QPPPP/nNB1KB1R b Kkq - 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newKnight(black),
+		},
+		{
+			name:        "black knight takes at h1",
+			move:        "f2-h1",
+			startingFEN: "rnbqkb1r/pppppppp/8/8/4P3/2N2N2/PPPPBnPP/R1BQK2R b KQkq - 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newKnight(black),
+		},
+		{
+			name:        "white knight takes at h8",
+			move:        "f7-h8",
+			startingFEN: "r1q1kbnr/pppb1Npp/2np4/4p2Q/4P3/8/PPPP1PPP/RNB1KB1R w KQkq - 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newKnight(white),
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			gameToUpdate, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+			gameToCompareAgainst, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+
+			err = gameToUpdate.Update(tc.move)
+
+			if tc.expectedErr.expected {
+				assert.Error(t, err, "expected a non nil error")
+				assert.ErrorIs(t, err, tc.expectedErr.errType, "expected a different error...")
+				assert.Equal(t, gameToCompareAgainst, gameToUpdate, "expected both games to be the same")
+			} else {
+				assert.NoError(t, err, "expected a nil error")
+				moveParts := strings.Split(tc.move, "-")
+				startingCoords := gameToUpdate.board.coords[moveParts[0]]
+				endingCoords := gameToUpdate.board.coords[moveParts[1]]
+				// knight is at ending coords
+				endingSquare := gameToUpdate.board.squares[endingCoords.row][endingCoords.col]
+				assert.True(t, endingSquare.isOccupied, "expected ending square to be occupied")
+				assert.Equal(t, tc.pieceMoved, endingSquare.pieceAt, "expected ending square to contain the knight moved")
+				// starting square is empty
+				startingSquare := gameToUpdate.board.squares[startingCoords.row][startingCoords.col]
+				assert.False(t, startingSquare.isOccupied, "expected starting square to be empty")
+				assert.Equal(t, newEmpty(), startingSquare.pieceAt, "expected starting square to be an empty square")
+				// turn changed
+				assert.NotEqual(t, tc.pieceMoved.getPieceColor(), gameToUpdate.colorTurn, "turn didn't change")
+
+				// knight moves always clear enpassant square
+				assert.Equal(t, "", gameToUpdate.enPassantSquare, "enpassant square didn't clear")
+			}
+		})
+	}
+}
+
+func TestKnightTriesEnPassant(t *testing.T) {
+	type expectedErr struct {
+		expected bool
+		errType  error
+	}
+
+	type testCase struct {
+		name        string
+		startingFEN string
+		move        string
+		pieceMoved  piece
+	}
+
+	testCases := []testCase{
+		{
+			name:        "black knight tries capturing enpassant square at b3, invalid",
+			move:        "d4-b3",
+			startingFEN: "r1bqkb1r/pppppppp/5n2/8/1PPn4/2N2N2/P2PPPPP/R1BQKB1R b KQkq b3 0 1",
+			pieceMoved:  newKnight(black),
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			gameToUpdate, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+			gameToUpdate.Update(tc.move)
+
+			moveParts := strings.Split(tc.move, "-")
+			startingCoords := gameToUpdate.board.coords[moveParts[0]]
+			endingCoords := gameToUpdate.board.coords[moveParts[1]]
+			// knight is at ending coords
+			endingSquare := gameToUpdate.board.squares[endingCoords.row][endingCoords.col]
+			assert.True(t, endingSquare.isOccupied, "expected ending square to be occupied")
+			assert.Equal(t, tc.pieceMoved, endingSquare.pieceAt, "expected ending square to contain the knight moved")
+			// starting square is empty
+			startingSquare := gameToUpdate.board.squares[startingCoords.row][startingCoords.col]
+			assert.False(t, startingSquare.isOccupied, "expected starting square to be empty")
+			assert.Equal(t, newEmpty(), startingSquare.pieceAt, "expected starting square to be an empty square")
+			// turn changed
+			assert.NotEqual(t, tc.pieceMoved.getPieceColor(), gameToUpdate.colorTurn, "turn didn't change")
+
+			// knight moves always clear enpassant square
+			assert.Equal(t, "", gameToUpdate.enPassantSquare, "enpassant square didn't clear")
+			// pawn still is at enpassant square
+			pawnSquareCoords := gameToUpdate.board.coords["b4"]
+			pawnSquare := gameToUpdate.board.squares[pawnSquareCoords.row][pawnSquareCoords.col]
+			assert.True(t, pawnSquare.isOccupied, "expected pawn square to be occupied")
+			assert.Equal(t, newPawn(white), pawnSquare.pieceAt, "expeted pawn square to contain a pawn")
 		})
 	}
 }
