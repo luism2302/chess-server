@@ -786,6 +786,34 @@ func TestKnightUpdateGame(t *testing.T) {
 			expectedErr: expectedErr{expected: false},
 			pieceMoved:  newKnight(white),
 		},
+		{
+			name:        "white knight surrounded",
+			move:        "d5-c3",
+			startingFEN: "rnb4r/p1k1pp2/1p3np1/2pN4/1q3b2/1Pp1p2P/P1PPPPP1/R1BQKBNR w KQ - 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newKnight(white),
+		},
+		{
+			name:        "black knight surrounded",
+			move:        "e4-g3",
+			startingFEN: "rnbqkb1r/pppppppp/3Q1N2/2B3N1/1P2n3/2P3P1/P2PPP1P/R3KB1R b KQkq - 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newKnight(black),
+		},
+		{
+			name:        "white knight surrounded by own pieces",
+			move:        "d3-b4",
+			startingFEN: "rnbqkbnr/pppppp2/6pp/2P1P3/1Q3N2/3N4/PP1P1PPP/1RB1KB1R w Kkq - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newKnight(white),
+		},
+		{
+			name:        "invalid white starting move",
+			move:        "g1-g3",
+			startingFEN: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newKnight(white),
+		},
 	}
 
 	for _, tc := range testCases {
@@ -879,6 +907,268 @@ func TestKnightTriesEnPassant(t *testing.T) {
 			pawnSquare := gameToUpdate.board.squares[pawnSquareCoords.row][pawnSquareCoords.col]
 			assert.True(t, pawnSquare.isOccupied, "expected pawn square to be occupied")
 			assert.Equal(t, newPawn(white), pawnSquare.pieceAt, "expeted pawn square to contain a pawn")
+		})
+	}
+}
+
+func TestGetAvailableMovesBishop(t *testing.T) {
+	type testCase struct {
+		name           string
+		startingFEN    string
+		startingSquare string
+		expectedMoves  []coords
+	}
+
+	testCases := []testCase{
+		{
+			name:           "c1 bishop starting moves",
+			startingFEN:    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			startingSquare: "c1",
+			expectedMoves:  []coords{},
+		},
+		{
+			name:           "c1 bishop with d2 not occupied",
+			startingFEN:    "rnbqkbnr/ppp1pppp/3p4/8/8/3P4/PPP1PPPP/RNBQKBNR w KQkq - 0 1",
+			startingSquare: "c1",
+			expectedMoves:  []coords{{row: 6, col: 3}, {row: 5, col: 4}, {row: 4, col: 5}, {row: 3, col: 6}, {row: 2, col: 7}},
+		},
+		{
+			name:           "c1 bishop with d2 not occupied, but own pawn blocking at f4",
+			startingFEN:    "rnbqkbnr/pppp2p1/4p2p/5p2/5P2/2PP4/PP2P1PP/RNBQKBNR w KQkq - 0 1",
+			startingSquare: "c1",
+			expectedMoves:  []coords{{row: 6, col: 3}, {row: 5, col: 4}},
+		},
+		{
+			name:           "c1 bishop with d2 not occupied, can take black pawn at g5",
+			startingFEN:    "rnbqkbnr/ppp2pp1/8/3p2p1/4p3/3P1N1P/PPP1PP2/RNBQKB1R w KQkq - 0 1",
+			startingSquare: "c1",
+			expectedMoves:  []coords{{row: 6, col: 3}, {row: 5, col: 4}, {row: 4, col: 5}, {row: 3, col: 6}},
+		},
+		{
+			name:           "c8 bishop starting moves",
+			startingFEN:    "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1",
+			startingSquare: "c8",
+			expectedMoves:  []coords{},
+		},
+		{
+			name:           "c8 bishop starting moves with d7 not occupied",
+			startingFEN:    "rnbqkbnr/ppp1pppp/3p4/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3 0 1",
+			startingSquare: "c8",
+			expectedMoves:  []coords{{row: 1, col: 3}, {row: 2, col: 4}, {row: 3, col: 5}, {row: 4, col: 6}, {row: 5, col: 7}},
+		},
+		{
+			name:           "c8 bishop starting moves with d7 not occupied, but own pawn blocking at g4",
+			startingFEN:    "rnbqkbnr/ppp1pp1p/3p4/8/3P2p1/4P3/PPPN1PPP/RNBQKB1R b KQkq - 0 1",
+			startingSquare: "c8",
+			expectedMoves:  []coords{{row: 1, col: 3}, {row: 2, col: 4}, {row: 3, col: 5}},
+		},
+		{
+			name:           "c8 bishop starting moves with d7 not occupied, can take at g4",
+			startingFEN:    "rnbqkbnr/ppp1pp1p/3p4/8/3P2P1/P3P3/1PPN1PP1/RNBQKB1R b KQkq - 0 1",
+			startingSquare: "c8",
+			expectedMoves:  []coords{{row: 1, col: 3}, {row: 2, col: 4}, {row: 3, col: 5}, {row: 4, col: 6}},
+		},
+		{
+			name:           "f1 bishop starting moves with e2 not occuppied",
+			startingFEN:    "rnbqkbnr/pppppppp/8/8/8/4P3/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+			startingSquare: "f1",
+			expectedMoves:  []coords{{row: 6, col: 4}, {row: 5, col: 3}, {row: 4, col: 2}, {row: 3, col: 1}, {row: 2, col: 0}},
+		},
+		{
+			name:           "f8 bishop starting moves with e7 not occuppied",
+			startingFEN:    "rnbqkbnr/pppp1ppp/4p3/8/3PP3/8/PPP2PPP/RNBQKBNR b KQkq d3 0 1",
+			startingSquare: "f8",
+			expectedMoves:  []coords{{row: 1, col: 4}, {row: 2, col: 3}, {row: 3, col: 2}, {row: 4, col: 1}, {row: 5, col: 0}},
+		},
+		{
+			name:           "white bishop at c4, lots many moves available",
+			startingFEN:    "rnbqkb1r/ppp1p2p/3p1ppn/8/2B5/P3P2P/1PPP1PP1/RNBQK1NR w KQkq - 0 1",
+			startingSquare: "c4",
+			expectedMoves:  []coords{{row: 6, col: 0}, {row: 5, col: 1}, {row: 3, col: 3}, {row: 2, col: 4}, {row: 1, col: 5}, {row: 0, col: 6}, {row: 2, col: 0}, {row: 3, col: 1}, {row: 5, col: 3}, {row: 6, col: 4}, {row: 7, col: 5}},
+		},
+		{
+			name:           "black bishop at f5, lots many moves available",
+			startingFEN:    "rn1qkb1r/ppp1p2p/3p1ppn/5b2/2B3P1/P3P2P/1PPP1P2/RNBQK1NR b KQkq g3 0 1",
+			startingSquare: "f5",
+			expectedMoves:  []coords{{row: 6, col: 2}, {row: 5, col: 3}, {row: 4, col: 4}, {row: 0, col: 2}, {row: 1, col: 3}, {row: 2, col: 4}, {row: 4, col: 6}},
+		},
+		{
+			name:           "white bishop at d4, lots of moves available",
+			startingFEN:    "rnbqkbnr/p1pppppp/1p6/8/3B4/8/PPPPPPPP/RN1QKBNR w KQkq - 0 1",
+			startingSquare: "d4",
+			expectedMoves:  []coords{{row: 5, col: 2}, {row: 3, col: 4}, {row: 2, col: 5}, {row: 5, col: 4}, {row: 1, col: 6}, {row: 3, col: 2}, {row: 2, col: 1}},
+		},
+		{
+			name:           "white bishop at a1, whole diagonal free",
+			startingFEN:    "rnbqkbn1/p2ppp1r/1pp3pp/8/1P6/P7/R1PPPPPP/BN1QKBNR w Kq - 0 1",
+			startingSquare: "a1",
+			expectedMoves:  []coords{{row: 6, col: 1}, {row: 5, col: 2}, {row: 4, col: 3}, {row: 3, col: 4}, {row: 2, col: 5}, {row: 1, col: 6}, {row: 0, col: 7}},
+		},
+		{
+			name:           "white bishop at h1, whole diagonal free",
+			startingFEN:    "1nbqkbnr/r1pppppp/8/p7/1p6/6PP/PPPPPP1R/RNBQK1NB w Qk - 0 1",
+			startingSquare: "h1",
+			expectedMoves:  []coords{{row: 6, col: 6}, {row: 5, col: 5}, {row: 4, col: 4}, {row: 3, col: 3}, {row: 2, col: 2}, {row: 1, col: 1}, {row: 0, col: 0}},
+		},
+		{
+			name:           "black bishop at a8, whole diagonal free",
+			startingFEN:    "bn1qkbnr/2pppppp/rp6/p7/7P/2PP2P1/PP2PP1R/RNBQKBN1 w Qk - 0 1",
+			startingSquare: "a8",
+			expectedMoves:  []coords{{row: 6, col: 6}, {row: 5, col: 5}, {row: 4, col: 4}, {row: 3, col: 3}, {row: 2, col: 2}, {row: 1, col: 1}, {row: 7, col: 7}},
+		},
+		{
+			name:           "white bishop at h8, whole diagonal free",
+			startingFEN:    "rnbqk1nb/pppppp2/6pr/7p/P7/RP1P1P2/2P1P1PP/1NBQKBNR w Kq - 0 1",
+			startingSquare: "h8",
+			expectedMoves:  []coords{{row: 6, col: 1}, {row: 5, col: 2}, {row: 4, col: 3}, {row: 3, col: 4}, {row: 2, col: 5}, {row: 1, col: 6}, {row: 7, col: 0}},
+		},
+		{
+			name:           "white bishop in the middle, 4 moves available",
+			startingFEN:    "4k3/8/1P3P2/8/3B4/8/1P3P2/4K3 w - - 0 1",
+			startingSquare: "d4",
+			expectedMoves:  []coords{{row: 3, col: 2}, {row: 3, col: 4}, {row: 5, col: 2}, {row: 5, col: 4}},
+		},
+		{
+			name:           "black bishop in the middle, 4 moves available",
+			startingFEN:    "3k4/8/1p3p2/8/3b4/6N1/1p3p2/3K4 b - - 0 1",
+			startingSquare: "d4",
+			expectedMoves:  []coords{{row: 3, col: 2}, {row: 3, col: 4}, {row: 5, col: 2}, {row: 5, col: 4}},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			game, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+
+			startingCoords := game.board.coords[tc.startingSquare]
+			bishop := game.getPieceAtCoords(startingCoords)
+			gotMoves := bishop.getAvailableMoves(startingCoords, game)
+
+			assert.ElementsMatch(t, tc.expectedMoves, gotMoves, "expected different moves")
+		})
+	}
+}
+
+func TestBishopUpdateGame(t *testing.T) {
+	type expectedErr struct {
+		expected bool
+		errType  error
+	}
+
+	type testCase struct {
+		name        string
+		startingFEN string
+		move        string
+		expectedErr expectedErr
+		pieceMoved  piece
+	}
+
+	testCases := []testCase{
+		{
+			name:        "invalid white bishop move, no moves available",
+			move:        "c1-f4",
+			startingFEN: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newBishop(white),
+		},
+		{
+			name:        "invalid white bishop move, square is occupied by ally",
+			move:        "c3-b2",
+			startingFEN: "3K4/8/3b1N2/8/8/2B5/1P6/3k4 w - - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newBishop(white),
+		},
+		{
+			name:        "invalid white bishop move, illegal move",
+			move:        "c1-d3",
+			startingFEN: "rnbqkbnr/pppp1ppp/4p3/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newBishop(white),
+		},
+		{
+			name:        "valid white bishop move, takes at f6",
+			move:        "c3-f6",
+			startingFEN: "3k4/8/5n2/8/8/2B5/8/3K4 w - - 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newBishop(white),
+		},
+		{
+			name:        "invalid black bishop move, no squares available",
+			move:        "f8-b4",
+			startingFEN: "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newBishop(black),
+		},
+		{
+			name:        "invalid black bishop move, square is occuppied by ally",
+			move:        "e8-a4",
+			startingFEN: "4b2k/8/8/8/n7/4B3/8/2K5 b - - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newBishop(black),
+		},
+		{
+			name:        "invalid black bishop move, illegal move",
+			move:        "e6-d4",
+			startingFEN: "rn1qkb1r/ppp1pp1p/4bn2/3p2p1/8/1PP2N1P/PB1PPPP1/RN1QKB1R b KQkq - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newBishop(black),
+		},
+		{
+			name:        "valid black bishop move, takes at a1",
+			move:        "g7-a1",
+			startingFEN: "rnbqk1nr/ppppppbp/6p1/8/8/1P3N1P/P1PPPPP1/RNBQKB1R b KQkq - 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newBishop(black),
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			gameToUpdate, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+			gameToCompareAgainst, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+
+			moveParts := strings.Split(tc.move, "-")
+			startingCoords := gameToUpdate.board.coords[moveParts[0]]
+			startingSquare := gameToUpdate.board.squares[startingCoords.row][startingCoords.col]
+			endingCoords := gameToUpdate.board.coords[moveParts[1]]
+			endingSquare := gameToUpdate.board.squares[endingCoords.row][endingCoords.col]
+
+			assert.IsType(t, &bishop{}, startingSquare.pieceAt, "expected a bishop at starting square, before moving")
+			assert.Equal(t, tc.pieceMoved.getPieceColor(), startingSquare.pieceAt.getPieceColor())
+			err = gameToUpdate.Update(tc.move)
+
+			startingCoords = gameToUpdate.board.coords[moveParts[0]]
+			startingSquare = gameToUpdate.board.squares[startingCoords.row][startingCoords.col]
+			endingCoords = gameToUpdate.board.coords[moveParts[1]]
+			endingSquare = gameToUpdate.board.squares[endingCoords.row][endingCoords.col]
+
+			if tc.expectedErr.expected {
+				assert.Error(t, err, "expected a non nil error")
+				assert.ErrorIs(t, err, tc.expectedErr.errType, "expected a different error...")
+				assert.Equal(t, gameToCompareAgainst, gameToUpdate, "expected both games to be the same")
+			} else {
+				assert.NoError(t, err, "expected a nil error")
+				// knight is at ending coords
+				assert.True(t, endingSquare.isOccupied, "expected ending square to be occupied")
+				assert.Equal(t, tc.pieceMoved, endingSquare.pieceAt, "expected ending square to contain the bishop moved")
+				// starting square is empty
+				assert.False(t, startingSquare.isOccupied, "expected starting square to be empty")
+				assert.Equal(t, newEmpty(), startingSquare.pieceAt, "expected starting square to be an empty square")
+				// turn changed
+				assert.NotEqual(t, tc.pieceMoved.getPieceColor(), gameToUpdate.colorTurn, "turn didn't change")
+
+				// bishop moves always clear enpassant square
+				assert.Equal(t, "", gameToUpdate.enPassantSquare, "enpassant square didn't clear")
+			}
 		})
 	}
 }
