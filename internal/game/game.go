@@ -3,7 +3,6 @@ package game
 import (
 	"errors"
 	"fmt"
-	"log"
 	"slices"
 	"strings"
 )
@@ -89,8 +88,6 @@ func (g *Game) Update(move string) error {
 
 	availableMoves := pieceAtStart.getAvailableMoves(startingCoords, g)
 
-	log.Printf("available moves: %v", availableMoves)
-
 	if slices.Contains(availableMoves, endingCoords) {
 		updatedBoard := g.updateBoard(pieceAtStart, startingCoords, endingCoords)
 
@@ -100,6 +97,11 @@ func (g *Game) Update(move string) error {
 		} else {
 			g.colorTurn = white
 		}
+
+		a1RookCoords := coords{row: 7, col: 0}
+		h1RookCoords := coords{row: 7, col: 7}
+		a8RookCoords := coords{row: 0, col: 0}
+		h8RookCoords := coords{row: 0, col: 7}
 
 		switch v := pieceAtStart.(type) {
 		case *pawn:
@@ -113,11 +115,6 @@ func (g *Game) Update(move string) error {
 				return nil
 			}
 		case *rook:
-			a1RookCoords := coords{row: 7, col: 0}
-			h1RookCoords := coords{row: 7, col: 7}
-			a8RookCoords := coords{row: 0, col: 0}
-			h8RookCoords := coords{row: 0, col: 7}
-
 			if v.getPieceColor() == white {
 				if startingCoords == a1RookCoords {
 					g.whiteCastlingRights.canQueenSide = false
@@ -136,6 +133,19 @@ func (g *Game) Update(move string) error {
 		}
 
 		g.enPassantSquare = ""
+
+		switch v := pieceAtEnd.(type) {
+		case *rook:
+			if endingCoords == a1RookCoords && v.getPieceColor() == white {
+				g.whiteCastlingRights.canQueenSide = false
+			} else if endingCoords == h1RookCoords && v.getPieceColor() == white {
+				g.whiteCastlingRights.canKingSide = false
+			} else if endingCoords == a8RookCoords && v.getPieceColor() == black {
+				g.blackCastlingRights.canQueenSide = false
+			} else if endingCoords == h8RookCoords && v.getPieceColor() == black {
+				g.blackCastlingRights.canKingSide = false
+			}
+		}
 
 	} else {
 		return ErrInvalidMove

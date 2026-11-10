@@ -1669,6 +1669,320 @@ func TestGetAvailableMovesQueen(t *testing.T) {
 	}
 }
 
+func TestQueenUpdateGame(t *testing.T) {
+	type expectedErr struct {
+		expected bool
+		errType  error
+	}
+
+	type testCase struct {
+		name                        string
+		startingFEN                 string
+		move                        string
+		expectedErr                 expectedErr
+		pieceMoved                  piece
+		expectedWhiteCastlingRights castlingRights
+		expectedBlackCastlingRights castlingRights
+	}
+
+	testCases := []testCase{
+		{
+			name:                        "white queen, right capture",
+			startingFEN:                 "8/2k5/8/8/3Q2n1/8/8/1K6 w - - 0 1",
+			move:                        "d4-g4",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white queen, down capture",
+			startingFEN:                 "8/2k5/8/8/3Q2n1/3r4/8/1K6 w - - 0 1",
+			move:                        "d4-d3",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white queen, left capture",
+			startingFEN:                 "8/2k5/8/8/1p1Q2n1/3r4/8/1K6 w - - 0 1",
+			move:                        "d4-b4",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white queen, up capture",
+			startingFEN:                 "3b4/1k6/8/8/1p1Q2n1/3r4/8/1K6 w - - 0 1",
+			move:                        "d4-d8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white queen, right up capture",
+			startingFEN:                 "3b3r/1k6/8/8/1p1Q2n1/3r4/8/1K6 w - - 0 1",
+			move:                        "d4-h8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white queen, left up capture",
+			startingFEN:                 "3b3r/qk6/8/8/1p1Q2n1/3r4/8/1K6 w - - 0 1",
+			move:                        "d4-a7",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white queen, down left, capture",
+			startingFEN:                 "3b3r/qk6/8/8/1p1Q2n1/2pr4/8/1K6 w - - 0 1",
+			move:                        "d4-c3",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white queen, down right, capture",
+			startingFEN:                 "3b3r/qk6/8/8/1p1Q2n1/2pr4/8/1K4n1 w - - 0 1",
+			move:                        "d4-g1",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white queen, ilegal move",
+			startingFEN:                 "3b3r/qk6/8/8/1p1Q2n1/2pr4/8/1K4n1 w - - 0 1",
+			move:                        "d4-f5",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen, right capture",
+			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			move:                        "d4-g4",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen, up capture",
+			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			move:                        "d4-d8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen, left capture",
+			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			move:                        "d4-b4",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen, down capture",
+			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			move:                        "d4-d3",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen, right up, capture",
+			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			move:                        "d4-h8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen, left up, capture",
+			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			move:                        "d4-a7",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen, left down, capture",
+			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			move:                        "d4-c3",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen, right down, capture",
+			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			move:                        "d4-g1",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen, illegal move",
+			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			move:                        "d4-b3",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen, illegal move, tries to jump over piece",
+			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			move:                        "d4-h4",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white queen, legal move, check if castling rights are preserved",
+			startingFEN:                 "r2qk2r/8/8/8/8/8/8/R2QK2R w KQkq - 0 1",
+			move:                        "d1-d4",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "black queen, legal move, check if castling rights are preserved",
+			startingFEN:                 "r2qk2r/8/8/8/8/8/8/R2QK2R b KQkq - 0 1",
+			move:                        "d8-d5",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "white queen takes king side black rook",
+			startingFEN:                 "4k2r/8/8/8/3Q4/8/4K3/8 w k - 0 1",
+			move:                        "d4-h8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen takes queen side white rook",
+			startingFEN:                 "r3k2r/8/8/8/8/2q5/3P3P/R3K2R b KQkq - 0 1",
+			move:                        "c3-a1",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "white queen valid move with enpassant active",
+			startingFEN:                 "4k3/8/8/3pP3/8/8/8/3QK3 w - d6 0 1",
+			move:                        "d1-a4",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen caputres rook at h1, white loses king side castling",
+			startingFEN:                 "r3k2r/8/8/8/4q3/8/4P3/R3K2R b KQkq - 0 1",
+			move:                        "e4-h1",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "white queen caputres rook at a8, black loses queen side castling",
+			startingFEN:                 "r3k2r/4p3/8/8/4Q3/8/8/R3K2R w KQkq - 0 1",
+			move:                        "e4-a8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: false},
+		},
+		{
+			name:                        "white queen caputres rook at h8, black loses queen side castling",
+			startingFEN:                 "r3k2r/8/8/8/3Q4/8/8/R3K2R w KQkq - 0 1",
+			move:                        "d4-h8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: true},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			gameToUpdate, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+			gameToCompareAgainst, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+
+			moveParts := strings.Split(tc.move, "-")
+			startingCoords := gameToUpdate.board.coords[moveParts[0]]
+			startingSquare := gameToUpdate.board.squares[startingCoords.row][startingCoords.col]
+			endingCoords := gameToUpdate.board.coords[moveParts[1]]
+			endingSquare := gameToUpdate.board.squares[endingCoords.row][endingCoords.col]
+
+			assert.IsType(t, &queen{}, startingSquare.pieceAt, "expected a queen at starting square, before moving")
+			assert.Equal(t, tc.pieceMoved.getPieceColor(), startingSquare.pieceAt.getPieceColor())
+			err = gameToUpdate.Update(tc.move)
+
+			startingCoords = gameToUpdate.board.coords[moveParts[0]]
+			startingSquare = gameToUpdate.board.squares[startingCoords.row][startingCoords.col]
+			endingCoords = gameToUpdate.board.coords[moveParts[1]]
+			endingSquare = gameToUpdate.board.squares[endingCoords.row][endingCoords.col]
+
+			if tc.expectedErr.expected {
+				assert.Error(t, err, "expected a non nil error")
+				assert.ErrorIs(t, err, tc.expectedErr.errType, "expected a different error...")
+				assert.Equal(t, gameToCompareAgainst, gameToUpdate, "expected both games to be the same")
+			} else {
+				assert.NoError(t, err, "expected a nil error")
+				// knight is at ending coords
+				assert.True(t, endingSquare.isOccupied, "expected ending square to be occupied")
+				assert.Equal(t, tc.pieceMoved, endingSquare.pieceAt, "expected ending square to contain the queen moved")
+				// starting square is empty
+				assert.False(t, startingSquare.isOccupied, "expected starting square to be empty")
+				assert.Equal(t, newEmpty(), startingSquare.pieceAt, "expected starting square to be an empty square")
+				// turn changed
+				assert.NotEqual(t, tc.pieceMoved.getPieceColor(), gameToUpdate.colorTurn, "turn didn't change")
+
+				// queen moves always clear enpassant square
+				assert.Equal(t, "", gameToUpdate.enPassantSquare, "enpassant square didn't clear")
+				// check castling rights
+				assert.Equal(t, tc.expectedWhiteCastlingRights, gameToUpdate.whiteCastlingRights, "expected white castling right to be different")
+				assert.Equal(t, tc.expectedBlackCastlingRights, gameToUpdate.blackCastlingRights, "expected black castling right to be different")
+
+			}
+		})
+	}
+}
+
 func callMoves(t *testing.T, game *Game, moves ...string) error {
 	t.Helper()
 
