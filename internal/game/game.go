@@ -112,7 +112,29 @@ func (g *Game) Update(move string) error {
 				g.coordsToSquareName(enPassantSquareCoords)
 				return nil
 			}
+		case *rook:
+			a1RookCoords := coords{row: 7, col: 0}
+			h1RookCoords := coords{row: 7, col: 7}
+			a8RookCoords := coords{row: 0, col: 0}
+			h8RookCoords := coords{row: 0, col: 7}
+
+			if v.getPieceColor() == white {
+				if startingCoords == a1RookCoords {
+					g.whiteCastlingRights.canQueenSide = false
+				} else if startingCoords == h1RookCoords {
+					g.whiteCastlingRights.canKingSide = false
+				}
+			}
+
+			if v.getPieceColor() == black {
+				if startingCoords == a8RookCoords {
+					g.blackCastlingRights.canQueenSide = false
+				} else if startingCoords == h8RookCoords {
+					g.blackCastlingRights.canKingSide = false
+				}
+			}
 		}
+
 		g.enPassantSquare = ""
 
 	} else {

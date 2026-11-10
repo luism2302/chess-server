@@ -1173,6 +1173,319 @@ func TestBishopUpdateGame(t *testing.T) {
 	}
 }
 
+func TestGetAvailableMovesRook(t *testing.T) {
+	type testCase struct {
+		name           string
+		startingFEN    string
+		startingSquare string
+		expectedMoves  []coords
+	}
+
+	testCases := []testCase{
+		{
+			name:           "a1 white rook starting moves",
+			startingFEN:    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			startingSquare: "a1",
+			expectedMoves:  []coords{},
+		},
+		{
+			name:           "h1 white rook starting moves",
+			startingFEN:    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			startingSquare: "h1",
+			expectedMoves:  []coords{},
+		},
+		{
+			name:           "a8 white rook starting moves",
+			startingFEN:    "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3 0 1",
+			startingSquare: "a8",
+			expectedMoves:  []coords{},
+		},
+		{
+			name:           "h8 white rook starting moves",
+			startingFEN:    "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq d3 0 1",
+			startingSquare: "h8",
+			expectedMoves:  []coords{},
+		},
+		{
+			name:           "white rook in the middle, many moves available",
+			startingFEN:    "4k3/8/8/8/3R4/8/8/1K6 w - - 0 1",
+			startingSquare: "d4",
+			expectedMoves:  []coords{{row: 7, col: 3}, {row: 6, col: 3}, {row: 5, col: 3}, {row: 3, col: 3}, {row: 2, col: 3}, {row: 1, col: 3}, {row: 0, col: 3}, {row: 4, col: 0}, {row: 4, col: 1}, {row: 4, col: 2}, {row: 4, col: 4}, {row: 4, col: 5}, {row: 4, col: 6}, {row: 4, col: 7}},
+		},
+		{
+			name:           "black rook in the middle, many moves available",
+			startingFEN:    "4k3/8/8/8/3r4/5R2/8/1K6 b - - 0 1",
+			startingSquare: "d4",
+			expectedMoves:  []coords{{row: 7, col: 3}, {row: 6, col: 3}, {row: 5, col: 3}, {row: 3, col: 3}, {row: 2, col: 3}, {row: 1, col: 3}, {row: 0, col: 3}, {row: 4, col: 0}, {row: 4, col: 1}, {row: 4, col: 2}, {row: 4, col: 4}, {row: 4, col: 5}, {row: 4, col: 6}, {row: 4, col: 7}},
+		},
+		{
+			name:           "white rook at h8, all edges available",
+			startingFEN:    "7R/4k3/8/8/3r4/8/1K6/8 w - - 0 1",
+			startingSquare: "h8",
+			expectedMoves:  []coords{{row: 0, col: 0}, {row: 0, col: 1}, {row: 0, col: 2}, {row: 0, col: 3}, {row: 0, col: 4}, {row: 0, col: 5}, {row: 0, col: 6}, {row: 1, col: 7}, {row: 2, col: 7}, {row: 3, col: 7}, {row: 4, col: 7}, {row: 5, col: 7}, {row: 6, col: 7}, {row: 7, col: 7}},
+		},
+		{
+			name:           "white rook at a8, all edges available",
+			startingFEN:    "R7/4k3/8/8/8/3r4/1K6/8 w - - 0 1",
+			startingSquare: "a8",
+			expectedMoves:  []coords{{row: 0, col: 7}, {row: 0, col: 1}, {row: 0, col: 2}, {row: 0, col: 3}, {row: 0, col: 4}, {row: 0, col: 5}, {row: 0, col: 6}, {row: 1, col: 0}, {row: 2, col: 0}, {row: 3, col: 0}, {row: 4, col: 0}, {row: 5, col: 0}, {row: 6, col: 0}, {row: 7, col: 0}},
+		},
+		{
+			name:           "black rook at a1, all edges available",
+			startingFEN:    "8/4k3/6R1/8/8/8/1K6/r7 b - - 0 1",
+			startingSquare: "a1",
+			expectedMoves:  []coords{{row: 7, col: 7}, {row: 7, col: 1}, {row: 7, col: 2}, {row: 7, col: 3}, {row: 7, col: 4}, {row: 7, col: 5}, {row: 7, col: 6}, {row: 1, col: 0}, {row: 2, col: 0}, {row: 3, col: 0}, {row: 4, col: 0}, {row: 5, col: 0}, {row: 6, col: 0}, {row: 0, col: 0}},
+		},
+		{
+			name:           "white rook in the middle, take available in four directions",
+			startingFEN:    "8/4k3/4p3/8/2n1R1b1/8/1K2pr2/8 w - - 0 1",
+			startingSquare: "e4",
+			expectedMoves:  []coords{{row: 2, col: 4}, {row: 3, col: 4}, {row: 5, col: 4}, {row: 6, col: 4}, {row: 4, col: 2}, {row: 4, col: 3}, {row: 4, col: 5}, {row: 4, col: 6}},
+		},
+		{
+			name:           "black rook in the middle, take available in four directions",
+			startingFEN:    "8/1k6/5P2/8/3P1r1P/8/1K3P2/8 b - - 0 1",
+			startingSquare: "f4",
+			expectedMoves:  []coords{{row: 4, col: 3}, {row: 4, col: 4}, {row: 4, col: 6}, {row: 4, col: 7}, {row: 2, col: 5}, {row: 3, col: 5}, {row: 5, col: 5}, {row: 6, col: 5}},
+		},
+		{
+			name:           "white rook in the middle, surrounded by allies",
+			startingFEN:    "8/3P1K2/8/1P1R3P/8/8/1k1P4/8 w - - 0 1",
+			startingSquare: "d5",
+			expectedMoves:  []coords{{row: 3, col: 2}, {row: 3, col: 4}, {row: 3, col: 5}, {row: 3, col: 6}, {row: 2, col: 3}, {row: 4, col: 3}, {row: 5, col: 3}},
+		},
+		{
+			name:           "black rook in the middle, surrounded by allies",
+			startingFEN:    "8/5k2/4b3/8/2q1r2n/8/1K6/4n3 b - - 0 1",
+			startingSquare: "e4",
+			expectedMoves:  []coords{{row: 4, col: 3}, {row: 4, col: 5}, {row: 4, col: 6}, {row: 3, col: 4}, {row: 5, col: 4}, {row: 6, col: 4}},
+		},
+		{
+			name:           "white rook surrounded by enemy pawns",
+			startingFEN:    "2k5/8/8/4p3/3pRp2/4p3/1K6/8 w - - 0 1",
+			startingSquare: "e4",
+			expectedMoves:  []coords{{row: 4, col: 3}, {row: 4, col: 5}, {row: 3, col: 4}, {row: 5, col: 4}},
+		},
+		{
+			name:           "black rook surrounded by enemy pawns",
+			startingFEN:    "2k5/5P2/4PrP1/5P2/8/8/1K6/8 b - - 0 1",
+			startingSquare: "f6",
+			expectedMoves:  []coords{{row: 2, col: 4}, {row: 2, col: 6}, {row: 1, col: 5}, {row: 3, col: 5}},
+		},
+		{
+			name:           "white rook in the middle, with ally pawn at the right",
+			startingFEN:    "4k3/8/8/8/3RP3/8/8/1K6 w - - 0 1",
+			startingSquare: "d4",
+			expectedMoves:  []coords{{row: 0, col: 3}, {row: 1, col: 3}, {row: 2, col: 3}, {row: 3, col: 3}, {row: 5, col: 3}, {row: 6, col: 3}, {row: 7, col: 3}, {row: 4, col: 0}, {row: 4, col: 1}, {row: 4, col: 2}},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			game, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+
+			startingCoords := game.board.coords[tc.startingSquare]
+			r := game.getPieceAtCoords(startingCoords)
+
+			assert.IsType(t, &rook{}, r, "expected a rook as piece in starting square")
+			gotMoves := r.getAvailableMoves(startingCoords, game)
+
+			assert.ElementsMatch(t, tc.expectedMoves, gotMoves, "expected different moves")
+		})
+	}
+}
+
+func TestRookUpdateGame(t *testing.T) {
+	type expectedErr struct {
+		expected bool
+		errType  error
+	}
+
+	type testCase struct {
+		name                        string
+		startingFEN                 string
+		move                        string
+		expectedErr                 expectedErr
+		pieceMoved                  piece
+		expectedWhiteCastlingRights castlingRights
+		expectedBlackCastlingRights castlingRights
+	}
+
+	testCases := []testCase{
+		{
+			name:                        "white rook, right caputre",
+			startingFEN:                 "2b5/8/4k3/8/p1R3n1/2r5/8/1K6 w - - 0 1",
+			move:                        "c4-g4",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white rook, left caputre",
+			startingFEN:                 "2b5/8/4k3/8/p1R3n1/2r5/8/1K6 w - - 0 1",
+			move:                        "c4-a4",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white rook, up capture",
+			startingFEN:                 "2b5/8/4k3/8/p1R3n1/2r5/8/1K6 w - - 0 1",
+			move:                        "c4-c8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white rook, down capture",
+			startingFEN:                 "2b5/8/4k3/8/p1R3n1/2r5/8/1K6 w - - 0 1",
+			move:                        "c4-c3",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black rook, right capture",
+			startingFEN:                 "2P4k/Q1r4N/8/8/8/8/2P5/K7 b - - 0 1",
+			move:                        "c7-h7",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black rook, left capture",
+			startingFEN:                 "2P4k/Q1r4N/8/8/8/8/2P5/K7 b - - 0 1",
+			move:                        "c7-a7",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black rook, up capture",
+			startingFEN:                 "2P4k/Q1r4N/8/8/8/8/2P5/K7 b - - 0 1",
+			move:                        "c7-c8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black rook, down capture",
+			startingFEN:                 "2P4k/Q1r4N/8/8/8/8/2P5/K7 b - - 0 1",
+			move:                        "c7-c2",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white rook, invalid move",
+			startingFEN:                 "8/8/4k3/2n5/8/3R4/1K6/8 w - - 0 1",
+			move:                        "d3-c5",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newRook(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black rook, tries to jump over piece",
+			startingFEN:                 "8/8/4k3/2n3r1/8/3R2B1/1K6/8 b - - 0 1",
+			move:                        "g5-g2",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newRook(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white rook, valid move with enpassant active and updates white queen side castling",
+			startingFEN:                 "r1bqkbnr/pppp3p/2n1ppp1/8/1P1P4/4P3/P1PN1PPP/R1BQKBNR w KQkq - 0 1",
+			move:                        "a1-b1",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "black rook, valid move with enpassant active and updates white queen side castling",
+			startingFEN:                 "r1bqkb1r/ppppn3/2n1ppp1/7p/1P1P4/4PN1P/P1PNBPP1/1RBQK2R b Kkq - 0 1",
+			move:                        "h8-g8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: true},
+		},
+		{
+			name:                        "white rook, valid move with enpassant active",
+			startingFEN:                 "rnbqkbnr/pppp1ppp/8/4p3/8/7P/PPPPPPP1/RNBQKBNR w KQkq e6 0 2",
+			move:                        "h1-h2",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			gameToUpdate, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+			gameToCompareAgainst, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+
+			moveParts := strings.Split(tc.move, "-")
+			startingCoords := gameToUpdate.board.coords[moveParts[0]]
+			startingSquare := gameToUpdate.board.squares[startingCoords.row][startingCoords.col]
+			endingCoords := gameToUpdate.board.coords[moveParts[1]]
+			endingSquare := gameToUpdate.board.squares[endingCoords.row][endingCoords.col]
+
+			assert.IsType(t, &rook{}, startingSquare.pieceAt, "expected a rook at starting square, before moving")
+			assert.Equal(t, tc.pieceMoved.getPieceColor(), startingSquare.pieceAt.getPieceColor())
+			err = gameToUpdate.Update(tc.move)
+
+			startingCoords = gameToUpdate.board.coords[moveParts[0]]
+			startingSquare = gameToUpdate.board.squares[startingCoords.row][startingCoords.col]
+			endingCoords = gameToUpdate.board.coords[moveParts[1]]
+			endingSquare = gameToUpdate.board.squares[endingCoords.row][endingCoords.col]
+
+			if tc.expectedErr.expected {
+				assert.Error(t, err, "expected a non nil error")
+				assert.ErrorIs(t, err, tc.expectedErr.errType, "expected a different error...")
+				assert.Equal(t, gameToCompareAgainst, gameToUpdate, "expected both games to be the same")
+			} else {
+				assert.NoError(t, err, "expected a nil error")
+				// knight is at ending coords
+				assert.True(t, endingSquare.isOccupied, "expected ending square to be occupied")
+				assert.Equal(t, tc.pieceMoved, endingSquare.pieceAt, "expected ending square to contain the rook moved")
+				// starting square is empty
+				assert.False(t, startingSquare.isOccupied, "expected starting square to be empty")
+				assert.Equal(t, newEmpty(), startingSquare.pieceAt, "expected starting square to be an empty square")
+				// turn changed
+				assert.NotEqual(t, tc.pieceMoved.getPieceColor(), gameToUpdate.colorTurn, "turn didn't change")
+
+				// rook moves always clear enpassant square
+				assert.Equal(t, "", gameToUpdate.enPassantSquare, "enpassant square didn't clear")
+				// check castling rights
+				assert.Equal(t, tc.expectedWhiteCastlingRights, gameToUpdate.whiteCastlingRights, "expected white castling right to be different")
+				assert.Equal(t, tc.expectedBlackCastlingRights, gameToUpdate.blackCastlingRights, "expected black castling right to be different")
+
+			}
+		})
+	}
+}
+
 func callMoves(t *testing.T, game *Game, moves ...string) error {
 	t.Helper()
 
