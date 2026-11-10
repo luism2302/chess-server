@@ -1486,6 +1486,189 @@ func TestRookUpdateGame(t *testing.T) {
 	}
 }
 
+func TestGetAvailableMovesQueen(t *testing.T) {
+	type testCase struct {
+		name           string
+		startingFEN    string
+		startingSquare string
+		expectedMoves  []coords
+	}
+
+	testCases := []testCase{
+		{
+			name:           "white queen in the middle, surrounded by enemies",
+			startingFEN:    "6k1/8/2npp3/2pQp3/2ppn3/8/8/K7 w - - 0 1",
+			startingSquare: "d5",
+			expectedMoves:  []coords{{row: 2, col: 2}, {row: 2, col: 3}, {row: 2, col: 4}, {row: 3, col: 2}, {row: 3, col: 4}, {row: 4, col: 2}, {row: 4, col: 3}, {row: 4, col: 4}},
+		},
+		{
+			name:           "black queen in the middle, surrounded by enemies",
+			startingFEN:    "6k1/8/2NPN3/2RqR3/2PBP3/8/8/K7 b - - 0 1",
+			startingSquare: "d5",
+			expectedMoves:  []coords{{row: 2, col: 2}, {row: 2, col: 3}, {row: 2, col: 4}, {row: 3, col: 2}, {row: 3, col: 4}, {row: 4, col: 2}, {row: 4, col: 3}, {row: 4, col: 4}},
+		},
+		{
+			name:           "white queen at a1, all moves available",
+			startingFEN:    "8/8/8/8/8/1k6/4K3/Q7 w - - 0 1",
+			startingSquare: "a1",
+			expectedMoves: []coords{
+				{row: 7, col: 1},
+				{row: 7, col: 2},
+				{row: 7, col: 3},
+				{row: 7, col: 4},
+				{row: 7, col: 5},
+				{row: 7, col: 6},
+				{row: 7, col: 7},
+				{row: 0, col: 0},
+				{row: 1, col: 0},
+				{row: 2, col: 0},
+				{row: 3, col: 0},
+				{row: 4, col: 0},
+				{row: 5, col: 0},
+				{row: 6, col: 0},
+				{row: 6, col: 1},
+				{row: 5, col: 2},
+				{row: 4, col: 3},
+				{row: 3, col: 4},
+				{row: 2, col: 5},
+				{row: 1, col: 6},
+				{row: 0, col: 7},
+			},
+		},
+		{
+			name:           "black queen at a8, all moves available",
+			startingFEN:    "q7/8/8/8/8/1k6/4K3/8 b - - 0 1",
+			startingSquare: "a8",
+			expectedMoves: []coords{
+				{row: 0, col: 1},
+				{row: 0, col: 2},
+				{row: 0, col: 3},
+				{row: 0, col: 4},
+				{row: 0, col: 5},
+				{row: 0, col: 6},
+				{row: 0, col: 7},
+				{row: 1, col: 0},
+				{row: 2, col: 0},
+				{row: 3, col: 0},
+				{row: 4, col: 0},
+				{row: 5, col: 0},
+				{row: 6, col: 0},
+				{row: 7, col: 0},
+				{row: 1, col: 1},
+				{row: 2, col: 2},
+				{row: 3, col: 3},
+				{row: 4, col: 4},
+				{row: 5, col: 5},
+				{row: 6, col: 6},
+				{row: 7, col: 7},
+			},
+		},
+		{
+			name:           "white queen at h8, all moves available",
+			startingFEN:    "7Q/8/8/8/8/1k6/4K3/8 w - - 0 1",
+			startingSquare: "h8",
+			expectedMoves: []coords{
+				{row: 0, col: 0},
+				{row: 0, col: 1},
+				{row: 0, col: 2},
+				{row: 0, col: 3},
+				{row: 0, col: 4},
+				{row: 0, col: 5},
+				{row: 0, col: 6},
+				{row: 1, col: 7},
+				{row: 2, col: 7},
+				{row: 3, col: 7},
+				{row: 4, col: 7},
+				{row: 5, col: 7},
+				{row: 6, col: 7},
+				{row: 7, col: 7},
+				{row: 1, col: 6},
+				{row: 2, col: 5},
+				{row: 3, col: 4},
+				{row: 4, col: 3},
+				{row: 5, col: 2},
+				{row: 6, col: 1},
+				{row: 7, col: 0},
+			},
+		},
+		{
+			name:           "black queen at h1, all moves available",
+			startingFEN:    "8/8/8/8/8/1k6/4K3/7q b - - 0 1",
+			startingSquare: "h1",
+			expectedMoves: []coords{
+				{row: 7, col: 0},
+				{row: 7, col: 1},
+				{row: 7, col: 2},
+				{row: 7, col: 3},
+				{row: 7, col: 4},
+				{row: 7, col: 5},
+				{row: 7, col: 6},
+				{row: 0, col: 7},
+				{row: 1, col: 7},
+				{row: 2, col: 7},
+				{row: 3, col: 7},
+				{row: 4, col: 7},
+				{row: 5, col: 7},
+				{row: 6, col: 7},
+				{row: 0, col: 0},
+				{row: 1, col: 1},
+				{row: 2, col: 2},
+				{row: 3, col: 3},
+				{row: 4, col: 4},
+				{row: 5, col: 5},
+				{row: 6, col: 6},
+			},
+		},
+		{
+			name:           "white queen in the middle, with allies one square in each direction",
+			startingFEN:    "8/7k/1N1B1N2/8/1R1Q1R2/8/1N1B1N2/7K w - - 0 1",
+			startingSquare: "d4",
+			expectedMoves: []coords{
+				{row: 3, col: 2},
+				{row: 3, col: 3},
+				{row: 3, col: 4},
+				{row: 4, col: 2},
+				{row: 4, col: 4},
+				{row: 5, col: 2},
+				{row: 5, col: 3},
+				{row: 5, col: 4},
+			},
+		},
+		{
+			name:           "black queen in the middle, with allies one square in each direction",
+			startingFEN:    "8/7K/1n1b1n2/8/1r1q1r2/8/1n1b1n2/7k b - - 0 1",
+			startingSquare: "d4",
+			expectedMoves: []coords{
+				{row: 3, col: 2},
+				{row: 3, col: 3},
+				{row: 3, col: 4},
+				{row: 4, col: 2},
+				{row: 4, col: 4},
+				{row: 5, col: 2},
+				{row: 5, col: 3},
+				{row: 5, col: 4},
+			},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			game, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+
+			startingCoords := game.board.coords[tc.startingSquare]
+			q := game.getPieceAtCoords(startingCoords)
+
+			assert.IsType(t, &queen{}, q, "expected a queen as piece in starting square")
+			gotMoves := q.getAvailableMoves(startingCoords, game)
+
+			assert.ElementsMatch(t, tc.expectedMoves, gotMoves, "expected different moves")
+		})
+	}
+}
+
 func callMoves(t *testing.T, game *Game, moves ...string) error {
 	t.Helper()
 
