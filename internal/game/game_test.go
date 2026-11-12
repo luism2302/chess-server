@@ -6,6 +6,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestValidateMove(t *testing.T) {
@@ -578,6 +579,77 @@ func TestUpdate(t *testing.T) {
 			pieceMoved:             newPawn(black),
 			expectedPass:           false,
 		},
+		{
+			name:                   "pawn cant take, its pinned",
+			startingFEN:            "rnb1kbnr/ppp1p1pp/3pq3/5p2/4P3/2N3PN/PPPP1P1P/R1BQKB1R w KQkq - 0 1",
+			moveToTest:             "e4-f5",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			pieceMoved:             newPawn(white),
+			expectedPass:           false,
+		},
+		{
+			name:                   "tries en passant, but cant because of pin",
+			startingFEN:            "rn1qkbnr/p2p1ppp/bp6/1Pp1P3/8/4PN2/P1P1KPPP/RNBQ1B1R w kq c6 0 1",
+			moveToTest:             "b5-c6",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			pieceMoved:             newPawn(white),
+			expectedPass:           false,
+		},
+		{
+			name:                   "white pawn pinned diagonally, cant move one square",
+			startingFEN:            "4k3/8/8/8/8/2b5/3P4/4K3 w - - 0 1",
+			moveToTest:             "d2-d3",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			pieceMoved:             newPawn(white),
+			expectedPass:           false,
+		},
+		{
+			name:                   "white pawn pinned diagonally, cant move two squares",
+			startingFEN:            "4k3/8/8/8/8/2b5/3P4/4K3 w - - 0 1",
+			moveToTest:             "d2-d4",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			pieceMoved:             newPawn(white),
+			expectedPass:           false,
+		},
+		{
+			name:                    "white pawn pinned diagonally, captures the pinning bishop",
+			startingFEN:             "4k3/8/8/8/8/2b5/3P4/4K3 w - - 0 1",
+			moveToTest:              "d2-c3",
+			expectedEmptySquareErr:  false,
+			expectedWrongTurnErr:    false,
+			expectedInvalidMoveErr:  false,
+			pieceMoved:              newPawn(white),
+			expectedPass:            true,
+			expectedEnPassantSquare: "",
+		},
+		{
+			name:                   "white en passant exposes king to rook on the rank",
+			startingFEN:            "4k3/8/8/KPp4r/8/8/8/8 w - c6 0 1",
+			moveToTest:             "b5-c6",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			pieceMoved:             newPawn(white),
+			expectedPass:           false,
+		},
+		{
+			name:                   "black en passant exposes king to rook on the rank",
+			startingFEN:            "8/8/8/8/R2Pp2k/8/8/4K3 b - d3 0 1",
+			moveToTest:             "e4-d3",
+			expectedEmptySquareErr: false,
+			expectedWrongTurnErr:   false,
+			expectedInvalidMoveErr: true,
+			pieceMoved:             newPawn(black),
+			expectedPass:           false,
+		},
 	}
 
 	for _, tc := range testCases {
@@ -796,7 +868,7 @@ func TestKnightUpdateGame(t *testing.T) {
 		{
 			name:        "black knight surrounded",
 			move:        "e4-g3",
-			startingFEN: "rnbqkb1r/pppppppp/3Q1N2/2B3N1/1P2n3/2P3P1/P2PPP1P/R3KB1R b KQkq - 0 1",
+			startingFEN: "rnbqkb1r/pppppppp/3Q1P2/2B3N1/1P2n3/2P3N1/P2PPP1P/R3KB1R b KQkq - 0 1",
 			expectedErr: expectedErr{expected: false},
 			pieceMoved:  newKnight(black),
 		},
@@ -811,6 +883,20 @@ func TestKnightUpdateGame(t *testing.T) {
 			name:        "invalid white starting move",
 			move:        "g1-g3",
 			startingFEN: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newKnight(white),
+		},
+		{
+			name:        "white knight pinned on the file",
+			move:        "e2-c3",
+			startingFEN: "4k3/4r3/8/8/8/8/4N3/4K3 w - - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newKnight(white),
+		},
+		{
+			name:        "white knight move doesnt resolve check",
+			move:        "h1-g3",
+			startingFEN: "4k3/8/8/8/8/8/8/r3K2N w - - 0 1",
 			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
 			pieceMoved:  newKnight(white),
 		},
@@ -1123,6 +1209,27 @@ func TestBishopUpdateGame(t *testing.T) {
 			expectedErr: expectedErr{expected: false},
 			pieceMoved:  newBishop(black),
 		},
+		{
+			name:        "white bishop pinned, leaves the pin diagonal",
+			move:        "d2-e3",
+			startingFEN: "4k3/8/8/b7/8/8/3B4/4K3 w - - 0 1",
+			expectedErr: expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:  newBishop(white),
+		},
+		{
+			name:        "white bishop pinned, moves along the pin diagonal",
+			move:        "d2-c3",
+			startingFEN: "4k3/8/8/b7/8/8/3B4/4K3 w - - 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newBishop(white),
+		},
+		{
+			name:        "white bishop pinned, captures the pinning bishop",
+			move:        "d2-a5",
+			startingFEN: "4k3/8/8/b7/8/8/3B4/4K3 w - - 0 1",
+			expectedErr: expectedErr{expected: false},
+			pieceMoved:  newBishop(white),
+		},
 	}
 
 	for _, tc := range testCases {
@@ -1431,6 +1538,51 @@ func TestRookUpdateGame(t *testing.T) {
 			pieceMoved:                  newRook(white),
 			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: true},
 			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "white rook, pinned",
+			startingFEN:                 "8/3r4/8/8/3R1q2/3K4/8/k7 w - - 0 1",
+			move:                        "d4-f4",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newRook(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "black rook, pinned, leaves the file",
+			startingFEN:                 "4k3/4r3/8/8/8/8/8/4RK2 b - - 0 1",
+			move:                        "e7-d7",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newRook(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black rook, pinned, moves along the file",
+			startingFEN:                 "4k3/4r3/8/8/8/8/8/4RK2 b - - 0 1",
+			move:                        "e7-e4",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black rook, pinned, captures the pinning rook",
+			startingFEN:                 "4k3/4r3/8/8/8/8/8/4RK2 b - - 0 1",
+			move:                        "e7-e1",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black rook leaves a8, black loses queen side castling",
+			startingFEN:                 "r3k3/8/8/8/8/8/8/4K3 b q - 0 1",
+			move:                        "a8-a5",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newRook(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
 		},
 	}
 
@@ -1769,7 +1921,7 @@ func TestQueenUpdateGame(t *testing.T) {
 		},
 		{
 			name:                        "black queen, right capture",
-			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			startingFEN:                 "3BQ2R/1k6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
 			move:                        "d4-g4",
 			expectedErr:                 expectedErr{expected: false},
 			pieceMoved:                  newQueen(black),
@@ -1778,7 +1930,7 @@ func TestQueenUpdateGame(t *testing.T) {
 		},
 		{
 			name:                        "black queen, up capture",
-			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			startingFEN:                 "3B1Q1R/1k6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
 			move:                        "d4-d8",
 			expectedErr:                 expectedErr{expected: false},
 			pieceMoved:                  newQueen(black),
@@ -1787,7 +1939,7 @@ func TestQueenUpdateGame(t *testing.T) {
 		},
 		{
 			name:                        "black queen, left capture",
-			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			startingFEN:                 "3B1Q1R/1k6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
 			move:                        "d4-b4",
 			expectedErr:                 expectedErr{expected: false},
 			pieceMoved:                  newQueen(black),
@@ -1796,7 +1948,7 @@ func TestQueenUpdateGame(t *testing.T) {
 		},
 		{
 			name:                        "black queen, down capture",
-			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			startingFEN:                 "3B1Q1R/1k6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
 			move:                        "d4-d3",
 			expectedErr:                 expectedErr{expected: false},
 			pieceMoved:                  newQueen(black),
@@ -1805,7 +1957,7 @@ func TestQueenUpdateGame(t *testing.T) {
 		},
 		{
 			name:                        "black queen, right up, capture",
-			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			startingFEN:                 "3B1Q1R/1k6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
 			move:                        "d4-h8",
 			expectedErr:                 expectedErr{expected: false},
 			pieceMoved:                  newQueen(black),
@@ -1814,7 +1966,7 @@ func TestQueenUpdateGame(t *testing.T) {
 		},
 		{
 			name:                        "black queen, left up, capture",
-			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			startingFEN:                 "3B1Q1R/1k6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
 			move:                        "d4-a7",
 			expectedErr:                 expectedErr{expected: false},
 			pieceMoved:                  newQueen(black),
@@ -1823,7 +1975,7 @@ func TestQueenUpdateGame(t *testing.T) {
 		},
 		{
 			name:                        "black queen, left down, capture",
-			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			startingFEN:                 "3B1Q1R/1k6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
 			move:                        "d4-c3",
 			expectedErr:                 expectedErr{expected: false},
 			pieceMoved:                  newQueen(black),
@@ -1832,7 +1984,7 @@ func TestQueenUpdateGame(t *testing.T) {
 		},
 		{
 			name:                        "black queen, right down, capture",
-			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			startingFEN:                 "3B1Q1R/1k6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
 			move:                        "d4-g1",
 			expectedErr:                 expectedErr{expected: false},
 			pieceMoved:                  newQueen(black),
@@ -1841,7 +1993,7 @@ func TestQueenUpdateGame(t *testing.T) {
 		},
 		{
 			name:                        "black queen, illegal move",
-			startingFEN:                 "3B3R/Qk6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
+			startingFEN:                 "3B1Q1R/1k6/8/8/1P1q2N1/2PN4/8/1K4N1 b - - 0 1",
 			move:                        "d4-b3",
 			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
 			pieceMoved:                  newQueen(black),
@@ -1929,6 +2081,24 @@ func TestQueenUpdateGame(t *testing.T) {
 			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
 			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: true},
 		},
+		{
+			name:                        "black queen, pinned, leaves the file",
+			startingFEN:                 "4k3/8/4q3/8/8/8/8/4RK2 b - - 0 1",
+			move:                        "e6-d5",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen, pinned, moves along the file",
+			startingFEN:                 "4k3/8/4q3/8/8/8/8/4RK2 b - - 0 1",
+			move:                        "e6-e2",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newQueen(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -1983,6 +2153,559 @@ func TestQueenUpdateGame(t *testing.T) {
 	}
 }
 
+func TestGetAvailableMovesKing(t *testing.T) {
+	type testCase struct {
+		name           string
+		startingFEN    string
+		startingSquare string
+		expectedMoves  []coords
+	}
+
+	testCases := []testCase{
+		{
+			name:           "white king in the middle, all available moves",
+			startingFEN:    "8/8/5k2/8/2K5/8/8/r6R w - - 0 1",
+			startingSquare: "c4",
+			expectedMoves:  []coords{{row: 3, col: 1}, {row: 3, col: 2}, {row: 3, col: 3}, {row: 4, col: 1}, {row: 4, col: 3}, {row: 5, col: 1}, {row: 5, col: 2}, {row: 5, col: 3}},
+		},
+		{
+			name:           "black king in the middle, all available moves",
+			startingFEN:    "8/8/5k2/8/2K5/8/8/r6R b - - 0 1",
+			startingSquare: "f6",
+			expectedMoves:  []coords{{row: 1, col: 4}, {row: 1, col: 5}, {row: 1, col: 6}, {row: 2, col: 4}, {row: 2, col: 6}, {row: 3, col: 4}, {row: 3, col: 5}, {row: 3, col: 6}},
+		},
+		{
+			name:           "white king starting moves",
+			startingFEN:    "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+			startingSquare: "e1",
+			expectedMoves:  []coords{},
+		},
+		{
+			name:           "black king starting moves",
+			startingFEN:    "rnbqkbnr/pppppppp/8/8/8/2N5/PPPPPPPP/R1BQKBNR b KQkq - 0 1",
+			startingSquare: "e8",
+			expectedMoves:  []coords{},
+		},
+		{
+			name:           "white king with queen side castle available",
+			startingFEN:    "r3kbnr/pbpqpppp/1pnp4/8/8/1PNP1N2/PBPQPPPP/R3KB1R w KQkq - 0 1",
+			startingSquare: "e1",
+			expectedMoves:  []coords{{row: 7, col: 3}, {row: 7, col: 2}},
+		},
+		{
+			name:           "black king with queen side castle available",
+			startingFEN:    "r3kbnr/pbpqpppp/1pnp4/8/8/1PNP1NP1/PBPQPP1P/R3KB1R b KQkq - 0 1",
+			startingSquare: "e8",
+			expectedMoves:  []coords{{row: 0, col: 3}, {row: 0, col: 2}},
+		},
+		{
+			name:           "black king with both sides castle available",
+			startingFEN:    "r3k2r/pbpqppbp/1pnp1np1/8/4P3/1PNP1NPP/PBPQ1PB1/R3K2R b KQkq - 0 1",
+			startingSquare: "e8",
+			expectedMoves:  []coords{{row: 0, col: 3}, {row: 0, col: 2}, {row: 0, col: 5}, {row: 0, col: 6}},
+		},
+		{
+			name:           "black king with both sides castle available",
+			startingFEN:    "r3k2r/pbpqppbp/1p1p1np1/4n3/4P3/1PNP1NPP/PBPQ1PB1/R3K2R w KQkq - 0 1",
+			startingSquare: "e1",
+			expectedMoves:  []coords{{row: 7, col: 3}, {row: 7, col: 2}, {row: 7, col: 5}, {row: 7, col: 6}, {row: 6, col: 4}},
+		},
+		{
+			name:           "white king with only king side available",
+			startingFEN:    "1r2k2r/pbpqppbp/1p1p1np1/4n3/4P3/1PNP1NPP/PBPQ1PB1/1R2K2R w Kk - 0 1",
+			startingSquare: "e1",
+			expectedMoves:  []coords{{row: 7, col: 3}, {row: 7, col: 5}, {row: 7, col: 6}, {row: 6, col: 4}},
+		},
+		{
+			name:           "black king with only king side available",
+			startingFEN:    "1r2k2r/pbpqppbp/1p1p1np1/3Nn3/4P3/1P1P1NPP/PBPQ1PB1/1R2K2R b Kk - 0 1",
+			startingSquare: "e8",
+			expectedMoves:  []coords{{row: 0, col: 3}, {row: 0, col: 5}, {row: 0, col: 6}},
+		},
+		{
+			name:           "black king with enemies up, down, right, left",
+			startingFEN:    "8/8/3pNp2/3BkB2/3pNp2/8/8/K7 b - - 0 1",
+			startingSquare: "e5",
+			expectedMoves:  []coords{{row: 2, col: 4}, {row: 4, col: 4}, {row: 3, col: 3}, {row: 3, col: 5}},
+		},
+		{
+			name:           "white king with enemies up, down, right, left",
+			startingFEN:    "8/8/3PnP2/3bKb2/3PnP2/8/8/k7 w - - 0 1",
+			startingSquare: "e5",
+			expectedMoves:  []coords{{row: 2, col: 4}, {row: 4, col: 4}, {row: 3, col: 3}, {row: 3, col: 5}},
+		},
+		{
+			name:           "black king with enemies in all diagonals",
+			startingFEN:    "8/8/3PpP2/3pkp2/3PpP2/8/8/K7 b - - 0 1",
+			startingSquare: "e5",
+			expectedMoves:  []coords{{row: 2, col: 3}, {row: 2, col: 5}, {row: 4, col: 3}, {row: 4, col: 5}},
+		},
+		{
+			name:           "white king at h1, only 2 pseudo legal moves",
+			startingFEN:    "k7/8/8/8/8/8/6Pp/7K w - - 0 1",
+			startingSquare: "h1",
+			expectedMoves:  []coords{{row: 7, col: 6}, {row: 6, col: 7}},
+		},
+		{
+			name:           "white king at a1, only 2 pseudo legal moves",
+			startingFEN:    "k7/8/8/8/8/8/pP6/K7 w - - 0 1",
+			startingSquare: "a1",
+			expectedMoves:  []coords{{row: 6, col: 0}, {row: 7, col: 1}},
+		},
+		{
+			name:           "black king at a8, only 2 pseudo legal moves",
+			startingFEN:    "k7/Pp6/8/8/8/8/8/K7 b - - 0 1",
+			startingSquare: "a8",
+			expectedMoves:  []coords{{row: 1, col: 0}, {row: 0, col: 1}},
+		},
+		{
+			name:           "black king at h8, only 2 pseudo legal moves",
+			startingFEN:    "7k/6pP/8/8/8/8/8/K7 b - - 0 1",
+			startingSquare: "h8",
+			expectedMoves:  []coords{{row: 1, col: 7}, {row: 0, col: 6}},
+		},
+		{
+			name:           "black king at g7, all moves available",
+			startingFEN:    "8/6k1/8/8/8/8/1K6/8 b - - 0 1",
+			startingSquare: "g7",
+			expectedMoves:  []coords{{row: 0, col: 5}, {row: 0, col: 6}, {row: 0, col: 7}, {row: 1, col: 5}, {row: 1, col: 7}, {row: 2, col: 5}, {row: 2, col: 6}, {row: 2, col: 7}},
+		},
+		{
+			name:           "white king at g7, all moves available",
+			startingFEN:    "8/6k1/8/8/8/8/1K6/8 w - - 0 1",
+			startingSquare: "b2",
+			expectedMoves:  []coords{{row: 5, col: 0}, {row: 5, col: 1}, {row: 5, col: 2}, {row: 6, col: 0}, {row: 6, col: 2}, {row: 7, col: 0}, {row: 7, col: 1}, {row: 7, col: 2}},
+		},
+		{
+			name:           "white king at a5",
+			startingFEN:    "8/8/8/K6k/8/8/8/8 w - - 0 1",
+			startingSquare: "a5",
+			expectedMoves:  []coords{{row: 2, col: 0}, {row: 2, col: 1}, {row: 3, col: 1}, {row: 4, col: 0}, {row: 4, col: 1}},
+		},
+		{
+			name:           "black king at h5",
+			startingFEN:    "8/8/8/K6k/8/8/8/8 b - - 0 1",
+			startingSquare: "h5",
+			expectedMoves:  []coords{{row: 2, col: 7}, {row: 2, col: 6}, {row: 3, col: 6}, {row: 4, col: 7}, {row: 4, col: 6}},
+		},
+		{
+			name:           "white king at e1, with queen at d1. king side castle available",
+			startingFEN:    "r3k2r/8/8/8/8/8/8/R2QK2R w KQkq - 0 1",
+			startingSquare: "e1",
+			expectedMoves:  []coords{{row: 6, col: 3}, {row: 6, col: 4}, {row: 6, col: 5}, {row: 7, col: 5}, {row: 7, col: 6}},
+		},
+		{
+			name:           "white king at e1, with queen at c1. king side castle available",
+			startingFEN:    "r3k2r/8/8/8/8/8/8/R1Q1K2R w KQkq - 0 1",
+			startingSquare: "e1",
+			expectedMoves:  []coords{{row: 6, col: 3}, {row: 6, col: 4}, {row: 6, col: 5}, {row: 7, col: 5}, {row: 7, col: 6}, {row: 7, col: 3}},
+		},
+		{
+			name:           "white king at e1, with queen at g1. queen side castle available",
+			startingFEN:    "r3k2r/8/8/8/8/8/8/R3K1QR w KQkq - 0 1",
+			startingSquare: "e1",
+			expectedMoves:  []coords{{row: 6, col: 3}, {row: 6, col: 4}, {row: 6, col: 5}, {row: 7, col: 2}, {row: 7, col: 3}, {row: 7, col: 5}},
+		},
+		{
+			name:           "black king at e8, with queen at d8. king side castle available",
+			startingFEN:    "r2qk2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+			startingSquare: "e8",
+			expectedMoves:  []coords{{row: 1, col: 3}, {row: 1, col: 4}, {row: 1, col: 5}, {row: 0, col: 5}, {row: 0, col: 6}},
+		},
+		{
+			name:           "black king at e8, with queen at c8. king side castle available",
+			startingFEN:    "r1q1k2r/8/8/8/8/8/8/R3K2R b KQkq - 0 1",
+			startingSquare: "e8",
+			expectedMoves:  []coords{{row: 1, col: 3}, {row: 1, col: 4}, {row: 1, col: 5}, {row: 0, col: 5}, {row: 0, col: 6}, {row: 0, col: 3}},
+		},
+		{
+			name:           "black king at e8, with queen at g8. queen side castle available",
+			startingFEN:    "r3k1qr/8/8/8/8/8/8/R3K2R b KQkq - 0 1",
+			startingSquare: "e8",
+			expectedMoves:  []coords{{row: 1, col: 3}, {row: 1, col: 4}, {row: 1, col: 5}, {row: 0, col: 2}, {row: 0, col: 3}, {row: 0, col: 5}},
+		},
+		{
+			name:           "white king, no castling",
+			startingFEN:    "r3k2r/8/8/8/8/8/8/R3K2R w kq - 0 1",
+			startingSquare: "e1",
+			expectedMoves:  []coords{{row: 7, col: 3}, {row: 7, col: 5}, {row: 6, col: 3}, {row: 6, col: 4}, {row: 6, col: 5}},
+		},
+		{
+			name:           "black king, no castling",
+			startingFEN:    "r3k2r/8/8/8/8/8/8/R3K2R b KQ - 0 1",
+			startingSquare: "e8",
+			expectedMoves:  []coords{{row: 0, col: 3}, {row: 0, col: 5}, {row: 1, col: 3}, {row: 1, col: 4}, {row: 1, col: 5}},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			game, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+
+			startingCoords := game.board.coords[tc.startingSquare]
+			k := game.getPieceAtCoords(startingCoords)
+
+			assert.IsType(t, &king{}, k, "expected a king as piece in starting square")
+			gotMoves := k.getAvailableMoves(startingCoords, game)
+
+			assert.ElementsMatch(t, tc.expectedMoves, gotMoves, "expected different moves")
+		})
+	}
+}
+
+func TestKingUpdateGame(t *testing.T) {
+	type expectedErr struct {
+		expected bool
+		errType  error
+	}
+
+	type testCase struct {
+		name                        string
+		startingFEN                 string
+		move                        string
+		expectedErr                 expectedErr
+		pieceMoved                  piece
+		expectedWhiteCastlingRights castlingRights
+		expectedBlackCastlingRights castlingRights
+	}
+
+	testCases := []testCase{
+		{
+			name:                        "white queen side castle",
+			startingFEN:                 "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+			move:                        "e1-c1",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "white king side castle",
+			startingFEN:                 "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+			move:                        "e1-g1",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "black king side castle",
+			startingFEN:                 "r3k2r/8/8/8/8/8/8/R3K2R b KQkq - 0 1",
+			move:                        "e8-g8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen side castle",
+			startingFEN:                 "r3k2r/8/8/8/8/8/8/R3K2R b KQkq - 0 1",
+			move:                        "e8-c8",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king tries to walk into check",
+			startingFEN:                 "2k5/8/8/8/8/8/r7/3K4 w - - 0 1",
+			move:                        "d1-d2",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king tries to step next to black pawn",
+			startingFEN:                 "4k3/8/8/8/8/3p4/8/4K3 w - - 0 1",
+			move:                        "e1-e2",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king steps in front of black pawn",
+			startingFEN:                 "4k3/8/8/8/8/3p4/8/4K3 w - - 0 1",
+			move:                        "e1-d2",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black king tries to step next to white pawn",
+			startingFEN:                 "4k3/8/3P4/8/8/8/8/4K3 b - - 0 1",
+			move:                        "e8-e7",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black king steps in front of white pawn",
+			startingFEN:                 "4k3/8/3P4/8/8/8/8/4K3 b - - 0 1",
+			move:                        "e8-d7",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king tries to step into knight attack, right",
+			startingFEN:                 "4k3/8/8/8/8/5n2/8/3K4 w - - 0 1",
+			move:                        "d1-e1",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king tries to step into knight attack, up",
+			startingFEN:                 "4k3/8/8/8/8/5n2/8/3K4 w - - 0 1",
+			move:                        "d1-d2",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king avoids knight attack",
+			startingFEN:                 "4k3/8/8/8/8/5n2/8/3K4 w - - 0 1",
+			move:                        "d1-c1",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king tries to step next to black king",
+			startingFEN:                 "8/8/8/3k4/8/3K4/8/8 w - - 0 1",
+			move:                        "d3-d4",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king steps away from black king",
+			startingFEN:                 "8/8/8/3k4/8/3K4/8/8 w - - 0 1",
+			move:                        "d3-c2",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king tries to capture protected rook",
+			startingFEN:                 "4k3/8/8/8/8/2b5/3r4/4K3 w - - 0 1",
+			move:                        "e1-d2",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king side castle into attacked square",
+			startingFEN:                 "4k3/8/8/8/8/8/6r1/4K2R w K - 0 1",
+			move:                        "e1-g1",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black king side castle into attacked square",
+			startingFEN:                 "4k2r/6R1/8/8/8/8/8/4K3 b k - 0 1",
+			move:                        "e8-g8",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: false},
+		},
+		{
+			name:                        "white queen side castle blocked by knight at b1",
+			startingFEN:                 "4k3/8/8/8/8/8/8/RN2K3 w Q - 0 1",
+			move:                        "e1-c1",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black queen side castle blocked by knight at b8",
+			startingFEN:                 "rn2k3/8/8/8/8/8/8/4K3 b q - 0 1",
+			move:                        "e8-c8",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: true},
+		},
+		{
+			name:                        "black king side castle blocked by bishop at f8",
+			startingFEN:                 "4kb1r/8/8/8/8/8/8/4K3 b k - 0 1",
+			move:                        "e8-g8",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: false},
+		},
+		{
+			name:                        "white king normal move",
+			startingFEN:                 "4k3/8/8/8/3K4/8/8/8 w - - 0 1",
+			move:                        "d4-d5",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black king normal move",
+			startingFEN:                 "8/8/8/4k3/8/8/8/4K3 b - - 0 1",
+			move:                        "e5-e6",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king captures knight",
+			startingFEN:                 "4k3/8/8/8/8/8/3n4/4K3 w - - 0 1",
+			move:                        "e1-d2",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "black king captures knight",
+			startingFEN:                 "4k3/3N4/8/8/8/8/8/4K3 b - - 0 1",
+			move:                        "e8-d7",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king moves on blacks turn",
+			startingFEN:                 "4k3/8/8/8/8/8/8/4K3 b - - 0 1",
+			move:                        "e1-e2",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidTurn},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king moves without castling, loses both castling rights",
+			startingFEN:                 "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+			move:                        "e1-e2",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "black king moves without castling, loses both castling rights",
+			startingFEN:                 "r3k2r/8/8/8/8/8/8/R3K2R b KQkq - 0 1",
+			move:                        "e8-e7",
+			expectedErr:                 expectedErr{expected: false},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:                        "white king tries to castle king side, but cant because goes through check",
+			startingFEN:                 "r3k2r/8/8/8/2b5/8/8/R3K2R w KQkq - 0 1",
+			move:                        "e1-g1",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "white king tries to castle queen side, but cant because goes through check",
+			startingFEN:                 "r3k2r/8/8/8/6b1/8/8/R3K2R w KQkq - 0 1",
+			move:                        "e1-c1",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(white),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "black king tries to castle king side, but cant because goes through check",
+			startingFEN:                 "r3k2r/8/8/8/1B6/8/8/R3K2R b KQkq - 0 1",
+			move:                        "e8-g8",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:                        "black king tries to castle queen side, but cant because goes through check",
+			startingFEN:                 "r3k2r/8/8/6B1/8/8/8/R3K2R b KQkq - 0 1",
+			move:                        "e8-c8",
+			expectedErr:                 expectedErr{expected: true, errType: ErrInvalidMove},
+			pieceMoved:                  newKing(black),
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			gameToUpdate, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+			gameToCompareAgainst, err := New(tc.startingFEN)
+			if err != nil {
+				t.Fatalf("error starting game: %s", err.Error())
+			}
+
+			moveParts := strings.Split(tc.move, "-")
+			startingCoords := gameToUpdate.board.coords[moveParts[0]]
+			startingSquare := gameToUpdate.board.squares[startingCoords.row][startingCoords.col]
+			endingCoords := gameToUpdate.board.coords[moveParts[1]]
+			endingSquare := gameToUpdate.board.squares[endingCoords.row][endingCoords.col]
+
+			assert.IsType(t, &king{}, startingSquare.pieceAt, "expected a king at starting square, before moving")
+			assert.Equal(t, tc.pieceMoved.getPieceColor(), startingSquare.pieceAt.getPieceColor())
+			err = gameToUpdate.Update(tc.move)
+
+			startingCoords = gameToUpdate.board.coords[moveParts[0]]
+			startingSquare = gameToUpdate.board.squares[startingCoords.row][startingCoords.col]
+			endingCoords = gameToUpdate.board.coords[moveParts[1]]
+			endingSquare = gameToUpdate.board.squares[endingCoords.row][endingCoords.col]
+
+			if tc.expectedErr.expected {
+				assert.Error(t, err, "expected a non nil error")
+				assert.ErrorIs(t, err, tc.expectedErr.errType, "expected a different error...")
+				assert.Equal(t, gameToCompareAgainst, gameToUpdate, "expected both games to be the same")
+			} else {
+				assert.NoError(t, err, "expected a nil error")
+				// knight is at ending coords
+				assert.True(t, endingSquare.isOccupied, "expected ending square to be occupied")
+				assert.Equal(t, tc.pieceMoved, endingSquare.pieceAt, "expected ending square to contain the king moved")
+				// starting square is empty
+				assert.False(t, startingSquare.isOccupied, "expected starting square to be empty")
+				assert.Equal(t, newEmpty(), startingSquare.pieceAt, "expected starting square to be an empty square")
+				// turn changed
+				assert.NotEqual(t, tc.pieceMoved.getPieceColor(), gameToUpdate.colorTurn, "turn didn't change")
+
+				// king moves always clear enpassant square
+				assert.Equal(t, "", gameToUpdate.enPassantSquare, "enpassant square didn't clear")
+				// check castling rights
+				assert.Equal(t, tc.expectedWhiteCastlingRights, gameToUpdate.whiteCastlingRights, "expected white castling right to be different")
+				assert.Equal(t, tc.expectedBlackCastlingRights, gameToUpdate.blackCastlingRights, "expected black castling right to be different")
+
+			}
+		})
+	}
+}
+
 func callMoves(t *testing.T, game *Game, moves ...string) error {
 	t.Helper()
 
@@ -1994,4 +2717,108 @@ func callMoves(t *testing.T, game *Game, moves ...string) error {
 	}
 
 	return nil
+}
+
+func TestCastlingMovesRook(t *testing.T) {
+	type testCase struct {
+		name                        string
+		startingFEN                 string
+		move                        string
+		expectedOccupied            map[string]piece
+		expectedEmpty               []string
+		expectedTurn                color
+		expectedWhiteCastlingRights castlingRights
+		expectedBlackCastlingRights castlingRights
+	}
+
+	testCases := []testCase{
+		{
+			name:        "white king side castle moves h1 rook to f1",
+			startingFEN: "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+			move:        "e1-g1",
+			expectedOccupied: map[string]piece{
+				"g1": newKing(white),
+				"f1": newRook(white),
+				"a1": newRook(white),
+			},
+			expectedEmpty:               []string{"e1", "h1"},
+			expectedTurn:                black,
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:        "white queen side castle moves a1 rook to d1",
+			startingFEN: "r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1",
+			move:        "e1-c1",
+			expectedOccupied: map[string]piece{
+				"c1": newKing(white),
+				"d1": newRook(white),
+				"h1": newRook(white),
+			},
+			expectedEmpty:               []string{"e1", "a1", "b1"},
+			expectedTurn:                black,
+			expectedWhiteCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+			expectedBlackCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+		},
+		{
+			name:        "black king side castle moves h8 rook to f8",
+			startingFEN: "r3k2r/8/8/8/8/8/8/R3K2R b KQkq - 0 1",
+			move:        "e8-g8",
+			expectedOccupied: map[string]piece{
+				"g8": newKing(black),
+				"f8": newRook(black),
+				"a8": newRook(black),
+			},
+			expectedEmpty:               []string{"e8", "h8"},
+			expectedTurn:                white,
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+		{
+			name:        "black queen side castle moves a8 rook to d8",
+			startingFEN: "r3k2r/8/8/8/8/8/8/R3K2R b KQkq - 0 1",
+			move:        "e8-c8",
+			expectedOccupied: map[string]piece{
+				"c8": newKing(black),
+				"d8": newRook(black),
+				"h8": newRook(black),
+			},
+			expectedEmpty:               []string{"e8", "a8", "b8"},
+			expectedTurn:                white,
+			expectedWhiteCastlingRights: castlingRights{canKingSide: true, canQueenSide: true},
+			expectedBlackCastlingRights: castlingRights{canKingSide: false, canQueenSide: false},
+		},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			gameToUpdate, err := New(tc.startingFEN)
+			require.NoError(t, err, "error starting game")
+
+			err = gameToUpdate.Update(tc.move)
+			require.NoError(t, err, "expected a nil error")
+
+			// board is read after Update, squares are copied by value
+			for squareName, expectedPiece := range tc.expectedOccupied {
+				squareCoords, ok := gameToUpdate.board.coords[squareName]
+				require.True(t, ok, "square %s doesn't exist", squareName)
+				square := gameToUpdate.board.squares[squareCoords.row][squareCoords.col]
+				assert.True(t, square.isOccupied, "expected %s to be occupied", squareName)
+				assert.Equal(t, expectedPiece, square.pieceAt, "expected a different piece at %s", squareName)
+			}
+
+			for _, squareName := range tc.expectedEmpty {
+				squareCoords, ok := gameToUpdate.board.coords[squareName]
+				require.True(t, ok, "square %s doesn't exist", squareName)
+				square := gameToUpdate.board.squares[squareCoords.row][squareCoords.col]
+				assert.False(t, square.isOccupied, "expected %s to be empty", squareName)
+				assert.Equal(t, newEmpty(), square.pieceAt, "expected an empty square at %s", squareName)
+			}
+
+			assert.Equal(t, tc.expectedTurn, gameToUpdate.colorTurn, "turn didn't change")
+			assert.Equal(t, "", gameToUpdate.enPassantSquare, "enpassant square didn't clear")
+			assert.Equal(t, tc.expectedWhiteCastlingRights, gameToUpdate.whiteCastlingRights, "expected white castling rights to be different")
+			assert.Equal(t, tc.expectedBlackCastlingRights, gameToUpdate.blackCastlingRights, "expected black castling rights to be different")
+		})
+	}
 }
